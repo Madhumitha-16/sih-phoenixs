@@ -7,8 +7,8 @@ import registerServiceWorker from './registerServiceWorker';
 import { AuthLogin } from './AuthComponents/AuthLogin';
 
 ReactDOM.render(
-  <AuthLogin>
+  // <AuthLogin>
     <App />
-  </AuthLogin>
+  // </AuthLogin>
     ,document.getElementById('root'));
 registerServiceWorker();
