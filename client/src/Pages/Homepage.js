@@ -18,6 +18,7 @@ import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import SupervisorAccountRoundedIcon from "@mui/icons-material/SupervisorAccountRounded";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import ContentPasteRoundedIcon from "@mui/icons-material/ContentPasteRounded";
+import Sidebar from "../Components/Sidebar";
 
 function Homepage() {
   const ctx = useContext(AuthLoginInfo);
@@ -135,7 +136,9 @@ function Homepage() {
     };
 
     return (
+      
       <div className="topPanelWrap">
+      
         <div className="topPanelDataRangeBox">
           <h3>Show data from selected period</h3>
           <div className="topPanelDataIcon">

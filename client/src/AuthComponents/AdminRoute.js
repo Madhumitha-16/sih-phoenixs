@@ -14,7 +14,6 @@ function AdminRoute({ children }) {
       </div>
     )
   }
-  // zrobić navigate z loginu kiedy jest sie zalogowanym
   return user?.role === "admin" ? children : <Navigate to='/' /> ;
 
 }
