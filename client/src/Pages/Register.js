@@ -53,9 +53,11 @@ export default function Register() {
         </div>
         <div className="input-row">
         <div className="input-group">
-        <label>Course</label>
+        <label className='radio-label'>Course</label>
+        <div className="radio">
         <input type="radio" className="input-radio"  required="required" value="BE" name="course"/>BE
         <input type="radio" className="input-radio"  required="required" value="BTech" name="course"/>BTech
+        </div>
         </div>
         <div className='input-group'>
         <label>Department</label>
