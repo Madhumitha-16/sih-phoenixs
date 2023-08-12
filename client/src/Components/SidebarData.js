@@ -12,24 +12,29 @@ export const SidebarData = [
     link: "/"
   },
   {
-    title: "Orders",
+    title: "Team",
     icon: <ContentPasteRoundedIcon />,
     link: "/orders"
   },
   {
-    title: "Clients",
+    title: "Phase I",
     icon: <PeopleOutlineRoundedIcon />,
     link: "/clients"
   },
   {
-    title: "Calendar",
+    title: "Phase II",
     icon: <TodayRoundedIcon />,
-    link: "/calendar"
+    link: "/phase2"
   },
   {
-    title: "Admin pannel",
-    icon: <AdminPanelSettingsRoundedIcon />,
-    link: "/adminPannel",
-    role: "admin"
-  }
+    title: "Phase III",
+    icon: <TodayRoundedIcon />,
+    link: "/phase3"
+  },
+  {
+    title: "Submissions",
+    icon: <TodayRoundedIcon />,
+    link: "/submissions"
+  },
+
 ];

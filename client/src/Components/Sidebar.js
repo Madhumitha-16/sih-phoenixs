@@ -46,10 +46,7 @@ const NavbarSection = ({ ctx, sidebarCollapse, handleOnClick }) => {
             //if user is logged in
             ctx && (
               <div className="userNavbar ">
-                <div className="userLogo">
-                  <AccountCircleRoundedIcon />
-                </div>
-                <div className="userLogged">Logged as: {ctx.username}</div>
+              
                 <div
                   className="navbarFlex"
                   onClick={() => {
@@ -77,7 +74,7 @@ const SidebarSection = ({ ctx, sidebarCollapse }) => {
     >
       <div className="SidebarLogoWrap">
         <div className="SidebarLogo">
-          <img src={logo} className="logo" alt="" />
+          <h1>Nalaiyathiran</h1>
         </div>
       </div>
 
