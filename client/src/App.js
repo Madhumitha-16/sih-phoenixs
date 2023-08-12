@@ -13,7 +13,7 @@ import LoginRoute  from './AuthComponents/LoginRoute';
 import AdminRoute  from './AuthComponents/AdminRoute';
 import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
-
+import Test from './Pages/test';
 
 
 function App() {
@@ -21,7 +21,12 @@ function App() {
     console.log(ctx)
     return (
       <BrowserRouter>
-        <Sidebar>
+        {
+          <Test></Test>
+        
+        
+        
+        /* <Sidebar>
           </Sidebar>
             <Routes>
               <Route path='/' exact element={
@@ -64,7 +69,7 @@ function App() {
                     <Login />
                   </LoginRoute>
                 } />
-            </Routes>
+            </Routes> */}
       </BrowserRouter>
     );
 }
