@@ -5,13 +5,13 @@
   }
   
   .contentRegisterWrap {
-    height: 90%;
+    height: 100%;
     width: 80%;
     max-width: 1200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f7f8f9;
+    background-color:#ffffff;
     border-radius: 30px;
     -webkit-box-shadow: 0px 0px 33px 0px rgba(219, 221, 255, 0.46);
     -moz-box-shadow: 0px 0px 33px 0px rgba(219, 221, 255, 0.46);
@@ -19,7 +19,7 @@
   }
   .contentLoginWrap {
     height: 60%;
-    width: 80%;
+    width: 70%;
     max-width: 1200px;
     display: flex;
     align-items: center;
@@ -33,29 +33,30 @@
   
   .loginWrap {
     margin-top: 10px;
-    padding: 20px;
+    padding: 0px;
   }
   
   /* left side */
   .loginSide {
-    background-color: #fafafa;
+    background-color: #ffffff;
     height: 100%;
-    width: 55%;
+    width: 70%;
     border-radius: 10px 0 0 10px;
     text-align: center;
   }
   
   .loginSide h1 {
     text-align: center;
-    margin: 0 0 50px 0;
+    margin: 50px 0 50px 0;
     font-weight: 400;
-    font-size: 50px;
+    font-size: 40px;
     color: #2e2e2e;
   }
   
   .input-group {
     margin-bottom: 35px;
     position: relative;
+    margin: 5% 1% 4%;
   }
   
   .input {
@@ -396,6 +397,7 @@ label.focusLabel {
       font-size: 40px;
     }
   }
+
   .input-row {
     display: flex;
     justify-content: space-between;
@@ -445,9 +447,7 @@ label.focusLabel {
   }
   .input-radio{
     margin-right: 10px;
-    margin-left: 10px;
   }
- 
   h4{
     color: #999;
     margin-right: 0px;
@@ -460,6 +460,5 @@ label.focusLabel {
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100px;
-    margin-left: 100px;
   }
   

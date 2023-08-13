@@ -14,6 +14,7 @@ import AdminRoute  from './AuthComponents/AdminRoute';
 import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
+import TeamDetails from './Pages/TeamDetails';
 
 
 
@@ -32,6 +33,9 @@ function App() {
            
             <Route path='/register' element={
                     <Register />
+                } />
+            <Route path='/team-registration' element={
+                    <TeamDetails />
                 } />
             </Routes>
       </BrowserRouter>
