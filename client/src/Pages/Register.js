@@ -81,11 +81,11 @@ catch(e)
             </div>
             </div>
         <div className="input-group">
-        <input type="email" className="input"  ref={mailid} required="required"/>
+        <input type="email" className="input"  ref={mailid} required/>
         <label >Email</label>
         </div>
         <div className="input-group">
-        <input type="text" className="input" ref={regnum}  required="required"/>
+        <input type="text" className="input" ref={regnum}  required/>
         <label >Register No.</label>
         </div>
         <div className="input-row">
