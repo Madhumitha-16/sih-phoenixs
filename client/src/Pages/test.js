@@ -1,10 +1,10 @@
 import React,{useRef} from 'react';
-import {firestore} from "../firebase"
+import {firebase} from "../firebaseConfig"
 import {addDoc,collection} from "@firebase/firestore";
 
 export default function Test() {
     const msgRef= useRef();
-    const ref=collection(firestore,"test");
+    const ref=collection(firebase,"test");
 
     const handleSave=async(e)=>
     {

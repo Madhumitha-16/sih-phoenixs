@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 //import axios from 'axios';
 import './Styles/register.css';
 import register from "../Assets/Images/regsiteration.png";
-import {firestore} from "../firebase"
+import {firebase} from "../firebaseConfig"
 import {addDoc,collection} from "@firebase/firestore";
 import { use } from 'passport';
 
@@ -27,7 +27,7 @@ const course=useRef();
 const dept=useRef();
 const psw=useRef();
 
-const ref=collection(firestore,"test2"); 
+const ref=collection(firebase,"test2"); 
 
 
 const login=async(e)=>

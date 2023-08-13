@@ -15,6 +15,7 @@ import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
 import TeamDetails from './Pages/TeamDetails';
+//import Fetch from './Pages/fetch';
 
 
 
@@ -25,6 +26,8 @@ function App() {
       <>
       <BrowserRouter>
       <Routes>
+
+
             <Route path='/login' element={
                   <LoginRoute>
                     <Login />
@@ -38,7 +41,13 @@ function App() {
                     <TeamDetails />
                 } />
             </Routes>
+
+
+
+
       </BrowserRouter>
+
+
       <BrowserRouter>
   
             <Routes>
