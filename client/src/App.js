@@ -14,6 +14,7 @@ import AdminRoute  from './AuthComponents/AdminRoute';
 import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
+//import Fetch from './Pages/fetch';
 
 
 
@@ -24,6 +25,8 @@ function App() {
       <>
       <BrowserRouter>
       <Routes>
+
+
             <Route path='/login' element={
                   <LoginRoute>
                     <Login />
@@ -33,8 +36,15 @@ function App() {
             <Route path='/register' element={
                     <Register />
                 } />
+
             </Routes>
+
+
+
+
       </BrowserRouter>
+
+
       <BrowserRouter>
   
             <Routes>
