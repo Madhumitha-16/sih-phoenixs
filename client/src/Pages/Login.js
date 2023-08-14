@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './Styles/login.css';
-
+import login_img from '../Assets/Images/Secure login.gif';
 export default function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -17,7 +17,13 @@ export default function Login() {
     })
   };
 
-  return (<div className="bodyWrap">
+  return (
+  <>
+     <div className='title'>
+        <h1> Nalaiyathiran</h1>
+      </div>
+  
+  <div className="body">
     <div className="contentLoginWrap">
       <div className="loginSide">
         <div className="loginWrap">
@@ -30,7 +36,7 @@ export default function Login() {
     onChange={e => setUsername(e.target.value)}
     required
   />
-  <label className={`${username.length > 0 ? "focusLabel" : ""}`}>Email ID</label>
+  <label className={`${username.length > 0 ? "focusLabel" : ""}`}>Email ID<span className='asterisk'> * </span></label>
 </form>
 </div>
 <form>
@@ -41,18 +47,21 @@ export default function Login() {
     onChange={e => setPassword(e.target.value)}
     required
   />
-  <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
+  <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Password<span className='asterisk'> * </span></label>
 </div>
 <button onClick={login}>Login</button>
 </form>
+<h4>Haven't registered before ? Register here!</h4>
         </div>
       </div>
-      <div className="infoSide">
-        <div className="loginWrap">
-          <h2>Hello again!</h2>
-          <p>Log in to your account to get access to app.</p>
-        </div>
-      </div>
+      
     </div>
-  </div>)
+    <div className="Side">
+        <div className="loginWrap">
+         <img src={login_img} />
+        </div>
+      </div>
+  </div>
+  </>
+  )
 }
