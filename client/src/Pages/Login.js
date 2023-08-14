@@ -23,14 +23,28 @@ export default function Login() {
         <div className="loginWrap">
           <h1>Log in</h1>
           <div className="input-group">
-            <input type="text" className="input" onChange={e => setUsername(e.target.value)} required="required"/>
-            <label className={`${username.length > 0 ? "focusLabel" : ""}`}>Email ID</label>
-          </div>
-          <div className="input-group">
-            <input type="text" className="input password" onChange={e => setPassword(e.target.value)} required="required"/>
-            <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
-          </div>
-          <button onClick={login}>Login</button>
+  <form>
+  <input
+    type="text"
+    className="input"
+    onChange={e => setUsername(e.target.value)}
+    required
+  />
+  <label className={`${username.length > 0 ? "focusLabel" : ""}`}>Email ID</label>
+</form>
+</div>
+<form>
+<div className="input-group">
+  <input
+    type="password" 
+    className="input password"
+    onChange={e => setPassword(e.target.value)}
+    required
+  />
+  <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
+</div>
+<button onClick={login}>Login</button>
+</form>
         </div>
       </div>
       <div className="infoSide">

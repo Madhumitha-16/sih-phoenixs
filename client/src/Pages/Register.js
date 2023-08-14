@@ -72,11 +72,11 @@ catch(e)
           <h1>Register</h1>
           <div className="input-row">
             <div className="input-group">
-                <input type="text" className="input"  onChange={e => setFirstName(e.target.value)} ref={fname} required="required"/>
+                <input type="text" className="input"  onChange={e => setFirstName(e.target.value)} ref={fname} required/>
                 <label className={`input-label ${firstName.length > 0 ? "focusLabel" : ""}`}>First Name</label>
             </div>
             <div className="input-group">
-                <input type="text" className="input" onChange={e => setLastName(e.target.value)} ref={lname} required="required" />
+                <input type="text" className="input" onChange={e => setLastName(e.target.value)} ref={lname} required />
                 <label className={`input-label ${lastName.length > 0 ? "focusLabel" : ""}`}>Last Name</label>
             </div>
             </div>
@@ -91,8 +91,8 @@ catch(e)
         <div className="input-row">
         <div className="input-group">
         <label>Course</label>
-        <input type="radio" className="input-radio" ref={course} required="required" value="BE" name="course"/>BE
-        <input type="radio" className="input-radio"  required="required" value="BTech" name="course"/>BTech
+        <input type="radio" className="input-radio" ref={course} required value="BE" name="course"/>BE
+        <input type="radio" className="input-radio"  required value="BTech" name="course"/>BTech
         </div>
         </div>
         <div className='input-group'>
@@ -106,11 +106,11 @@ catch(e)
         </div>
         
           <div className="input-group">
-            <input type="password" className="input password" ref={psw} onChange={e => setPassword(e.target.value)} required="required"/>
+            <input type="password" className="input password" ref={psw} onChange={e => setPassword(e.target.value)} required/>
             <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
           </div>
           <div className="input-group">
-            <input type="password" className="input password" onChange={e => setPassword(e.target.value)} required="required"/>
+            <input type="password" className="input password" onChange={e => setPassword(e.target.value)} required/>
             <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Confirm Password</label>
           </div>
           <button onClick={login}>Register</button>
