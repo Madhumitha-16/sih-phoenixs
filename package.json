@@ -30,13 +30,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Zlvsky/One-place.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Zlvsky/One-place/issues"
-  },
-  "homepage": "https://github.com/Zlvsky/One-place#readme"
+  }
 }
