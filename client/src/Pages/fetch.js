@@ -8,6 +8,7 @@ export default function Fetch() {
 
   async function Fetchsingle(e)
   {
+    e.preventDefault();
     const docRef = doc(db, "test2","uGMvxH4HYWnqQwBiL0YD");
     const docSnap = await getDoc(docRef);
   
@@ -33,8 +34,7 @@ console.log(doc.id, " => ", doc.data());
 
 
   async function Fetchall(e)
-  {
-    
+  {    
     const querySnapshot = await getDocs(collection(db, "test2"));
     querySnapshot.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
