@@ -128,7 +128,7 @@ catch(e)
             </div>
             </div>
         <div>
-        <input type='submit' className='button'  value="Register"/>
+        <input type='submit' className='button' onClick={login} value="Register"/>
         {/* <button onClick={login}>Register</button> */}
         </div>
        
