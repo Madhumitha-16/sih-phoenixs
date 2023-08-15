@@ -1,10 +1,10 @@
 import React,{useRef} from 'react';
-import {firebase} from "../firebaseConfig"
+import {db} from "../firebaseConfig"
 import {addDoc,collection} from "@firebase/firestore";
 
 export default function Test() {
     const msgRef= useRef();
-    const ref=collection(firebase,"test");
+    const ref=collection(db,"test");
 
     const handleSave=async(e)=>
     {
@@ -29,7 +29,7 @@ return (
     <div>
     <form onSubmit={handleSave} >
         <label>Team name</label>
-        <input type="text" ref={msgRef}/>
+        <input type="text" required ref={msgRef}/>
         <button type='submit'>Save</button>
     </form>
     </div>

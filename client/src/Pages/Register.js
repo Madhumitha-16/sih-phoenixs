@@ -67,7 +67,7 @@ catch(e)
 
   return (<div className="bodyWrap">
     <div className="contentRegisterWrap">
-    <form>
+    <form className="registerForm" onSubmit={login}>
       <div className="RegisterSide">
         <div className="loginWrap">
           <h1>Register</h1>
@@ -126,7 +126,7 @@ catch(e)
             </div>
             </div>
         <div>
-        <input type='submit' className='button' onClick={login} value="Register"/>
+        <input type='submit' className='button'  value="Register"/>
         {/* <button onClick={login}>Register</button> */}
         </div>
        

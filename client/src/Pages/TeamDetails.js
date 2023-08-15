@@ -150,11 +150,13 @@ catch(e)
       <div>
         <img src={team} />
       </div>
+      <form onSubmit={login}>
         <div className="contentTeamWrap">
           <div className="TeamSide">
+          
             <div className="TeamWrap">
               <h4>Team Leader</h4>
-              <form>
+        
           <div className="input-row">
             <div className="input-group">
                 <input type="text" className="input" onChange={e => settlFirstName(e.target.value)} ref={tl_fname} required />
@@ -198,11 +200,9 @@ catch(e)
                 </select>
             </div>
             </div>
-            </form>
             </div>
             <div className="TeamWrap">
               <h4>Team Member 2</h4>
-              <form>
           <div className="input-row">
             <div className="input-group">
 
@@ -243,20 +243,18 @@ catch(e)
                 </select>
             </div>
             </div>
-</form>
             </div>
           </div>
           <div className="TeamSide">
             <div className="TeamWrap">
               <h4>Team Member 1</h4>
-              <form>
           <div className="input-row">
             <div className="input-group">
                 <input type="text" className="input" onChange={e => sett1FirstName(e.target.value)} ref={t1_fname}  required />
                 <label className={`input-label ${t1firstName.length > 0 ? "focusLabel" : ""}`}>First Name <span className='asterisk'> * </span></label>
             </div>
             <div className="input-group">
-                <input type="text" className="input" onChange={e => sett1LastName(e.target.value)} ref={t1_lname}required />
+                <input type="text" className="input" onChange={e => sett1LastName(e.target.value)} ref={t1_lname} required />
                 <label className={`input-label ${t1LastName.length > 0 ? "focusLabel" : ""}`}>Last Name <span className='asterisk'> * </span></label>
             </div>
             </div>
@@ -289,11 +287,9 @@ catch(e)
                 </select>
             </div>
             </div>
-            </form>
             </div>
             <div className="TeamWrap">
               <h4>Team Member 3</h4>
-              <form>
           <div className="input-row">
             <div className="input-group">
                 <input type="text" className="input" onChange={e => sett3FirstName(e.target.value)} ref={t3_fname} required />
@@ -333,15 +329,14 @@ catch(e)
                 </select>
             </div>
             </div>
-            </form>
             </div>
           </div>
+            
         </div>
-       
+        <input type="submit" value="Register" className='button'/>
+        </form>
       </div>
-      <div className='team-button'>
-          <button onClick={login}>Register</button>
-        </div>
+   
       
        
         

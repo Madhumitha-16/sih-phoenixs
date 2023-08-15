@@ -16,6 +16,7 @@ import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
 import Fetch from './Pages/fetch';
 import TeamDetails from './Pages/TeamDetails';
+import Test from './Pages/test';
 //import Fetch from './Pages/fetch';
 
 
