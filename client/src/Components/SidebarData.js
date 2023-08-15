@@ -5,21 +5,25 @@ import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import PeopleOutlineRoundedIcon from '@mui/icons-material/PeopleOutlineRounded';
 import TodayRoundedIcon from '@mui/icons-material/TodayRounded';
 import AdminPanelSettingsRoundedIcon from '@mui/icons-material/AdminPanelSettingsRounded';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import AssistantPhotoIcon from '@mui/icons-material/AssistantPhoto';
+import Groups from '@mui/icons-material/Groups';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 export const SidebarData = [
   {
     title: "Dashboard",
     icon: <HomeRoundedIcon />,
-    link: "/"
+    link: "/home"
   },
   {
     title: "Team",
-    icon: <ContentPasteRoundedIcon />,
-    link: "/orders"
+    icon: <Groups />,
+    link: "/team-details"
   },
   {
     title: "Phase I",
     icon: <PeopleOutlineRoundedIcon />,
-    link: "/clients"
+    link: "/phase1"
   },
   {
     title: "Phase II",
@@ -28,13 +32,18 @@ export const SidebarData = [
   },
   {
     title: "Phase III",
-    icon: <TodayRoundedIcon />,
+    icon: <AssistantPhotoIcon />,
     link: "/phase3"
   },
   {
     title: "Submissions",
-    icon: <TodayRoundedIcon />,
+    icon: <RemoveRedEyeIcon />,
     link: "/submissions"
+  },
+  {
+    title: "Logout",
+    icon: <MeetingRoomIcon />,
+    link: "/login"
   },
 
 ];

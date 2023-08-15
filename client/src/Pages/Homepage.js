@@ -140,45 +140,25 @@ function Homepage() {
       <div className="topPanelWrap">
       
         <div className="topPanelDataRangeBox">
-          <h3>Show data from selected period</h3>
+          <h2>Welcome, Team!</h2>
           <div className="topPanelDataIcon">
-            <EventNoteRoundedIcon />
+            
           </div>
-          <select
-            className="dataRangeSelect"
-            onChange={(e) => {
-              setChangedDate(historyDateRange(Number(e.target.value)));
-              dateRangeToText(Number(e.target.value));
-            }}
-          >
-            <option defaultValue="defaultValue" value="0">
-              Today
-            </option>
-            <option value="7">7 Days</option>
-            <option value="14">14 Days</option>
-            <option value="30">30 Days</option>
-            <option value="99999">All</option>
-          </select>
+         
         </div>
 
         <div className="topPanelData">
           <div className="topPanelDataBox">
-            <div className="topPanelDataIcon">
-              <PaymentsRoundedIcon />
-            </div>
+            
 
             <div className="topPanelDataSummary">
-              <p>Income</p>
-              <h3 className="maincolor topPanelDataText">
-                {getTotalSumOfDateRange()}
-                zł
-              </h3>
+              
             </div>
 
             <div className="topPanelSeperator"></div>
             <div>
               <span className="topPanelBottomText">
-                From {selectedDateToText}
+                
               </span>
             </div>
           </div>
@@ -189,17 +169,14 @@ function Homepage() {
             </div>
 
             <div className="topPanelDataSummary">
-              <p>New orders</p>
-              <h3 className="maincolor topPanelDataText">
-                {getTotalNewOrdersDateRange()}
-              </h3>
+              
             </div>
 
             <div className="topPanelSeperator"></div>
             <div>
               <span className="topPanelBottomText">
                 <Link to="/orders" className="maincolor">
-                  + Create new order
+                
                 </Link>
               </span>
             </div>
@@ -211,26 +188,20 @@ function Homepage() {
             </div>
 
             <div className="topPanelDataSummary">
-              <p>New clients</p>
-              <h3 className="maincolor topPanelDataText">
-                {getTotalNewClientsDateRange()}
-              </h3>
+              
             </div>
 
             <div className="topPanelSeperator"></div>
             <div>
               <span className="topPanelBottomText">
-                <Link to="/clients" className="maincolor">
-                  + Add new client
-                </Link>
+                
               </span>
             </div>
           </div>
 
           <div className="topPanelDataBox">
             <div className="topPanelDataIcon topPanelHeaderInline">
-              <ContentPasteRoundedIcon />
-              <span>Upcoming events</span>
+             
             </div>
 
             <UpcomingEvents />
@@ -249,83 +220,12 @@ function Homepage() {
     );
   };
 
-  const ChartComponent = () => {
-    const getPastMonths = () => {
-      const pastMonths = [];
-      for (let i = 0; i < 12; i++) {
-        const todaysDate = new Date();
-        todaysDate.setMonth(todaysDate.getMonth() - i);
-        pastMonths.push({
-          month: todaysDate.toLocaleString("default", { month: "long" }),
-          firstDay: new Date(
-            todaysDate.getFullYear(),
-            todaysDate.getMonth(),
-            1
-          ),
-          lastDay: new Date(
-            todaysDate.getFullYear(),
-            todaysDate.getMonth() + 1,
-            0
-          ),
-          totalMonthSum: 0,
-        });
-      }
-      return pastMonths;
-    };
-    const dataBasedOnPastMonths = () => {
-      const pastMonthsData = getPastMonths();
-      pastMonthsData.forEach((el, i) => {
-        el.totalMonthSum = dashboardData[1]?.reduce((total, item) => {
-          let itemDate = new Date(item.date);
-          if (
-            el.firstDay.getTime() < itemDate.getTime() &&
-            itemDate.getTime() < el.lastDay.getTime()
-          ) {
-            return total + item.price;
-          } else {
-            return total;
-          }
-        }, 0);
-      });
-      return pastMonthsData.reverse();
-    };
+  
 
-    return (
-      <ResponsiveContainer width="100%" height="50%">
-        <LineChart
-          width={500}
-          height={300}
-          data={dataBasedOnPastMonths()}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="totalMonthSum"
-            stroke="#8884d8"
-            name="Orders sum"
-            activeDot={{
-              r: 8,
-            }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  };
 
   return (
     <div className="bodyWrap dashboardPage">
       <TopPanel />
-      <ChartComponent />
     </div>
   );
 }

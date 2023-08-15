@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Styles/login.css";
 import login_img from "../Assets/Images/Secure login.gif";
+import { Link } from "react-router-dom";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -64,7 +65,10 @@ export default function Login() {
                   </div>
                   <input type="submit" value="Login" className="button"/>
                 </form>
-                <h4>Haven't registered yet ? Register here!</h4>
+                <h4>Haven't registered yet ? 
+                <Link to="/register" className="maincolor">
+                Register here!
+                </Link></h4>
               </div>
             </div>
           </form>

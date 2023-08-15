@@ -14,7 +14,6 @@ function PrivateRoute({ children }) {
       </div>
     )
   }
-  // zrobić navigate z loginu kiedy jest sie zalogowanym
   return user ? children : <Navigate to="/login" />;
 
 }

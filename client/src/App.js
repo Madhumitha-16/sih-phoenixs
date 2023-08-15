@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import Login from './Pages/Login';
-import Orders from './Pages/Orders';
-import OrderPage from './Pages/OrderPage';
 import Clients from './Pages/Clients';
 import ClientPage from './Pages/ClientPage';
 import CalendarEvents from './Pages/CalendarEvents';
@@ -17,6 +15,7 @@ import Register from './Pages/Register';
 import Fetch from './Pages/fetch';
 import TeamDetails from './Pages/TeamDetails';
 import Test from './Pages/test';
+import Phase1 from './Pages/Phase1';
 //import Fetch from './Pages/fetch';
 
 
@@ -36,7 +35,7 @@ function App() {
                   </LoginRoute>
                 } />
            
-            <Route path='/register' element={
+            <Route path='/' element={
                     <Register/>
                 } />
             <Route path='/team-registration' element={
@@ -51,24 +50,22 @@ function App() {
       <BrowserRouter>
   
             <Routes>
-              <Route path='/' exact element={
-                  <PrivateRoute>
+              <Route path='/home' exact element={
+                  <>
                   <Sidebar />
                     <Homepage />
-                  </PrivateRoute>
+                  </>
                 } />
-              <Route path='/orders' element={
+              <Route path='/phase1' element={
                     <PrivateRoute>
-                    
                   <Sidebar />
-                      <Orders />
+                  <Phase1 />
                     </PrivateRoute>
                   } />
                 <Route path='/orders/:orderId' element={
                     <PrivateRoute>
                     
                   <Sidebar />
-                      <OrderPage />
                     </PrivateRoute>
                   } />
                 <Route path='/clients' element={

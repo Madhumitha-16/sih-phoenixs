@@ -20,52 +20,6 @@ const logout = () => {
     });
 };
 
-const NavbarSection = ({ ctx, sidebarCollapse, handleOnClick }) => {
-  const HamburgerMenu = ({ handleOnClick }) => {
-    return (
-      <button
-        className={`hamburgerMenu ${
-          sidebarCollapse ? "hamburgerMenuOpen" : "hamburgerMenuClosed"
-        }`}
-        onClick={() => handleOnClick()}
-      >
-        <div />
-        <div />
-        <div />
-      </button>
-    );
-  };
-  return (
-    <div className="navbar">
-      <div className="navbarWrap">
-        <div className="navbarRow">
-          <HamburgerMenu handleOnClick={handleOnClick} />
-        </div>
-        <div className="navbarRow">
-          {
-            //if user is logged in
-            ctx && (
-              <div className="userNavbar ">
-              
-                <div
-                  className="navbarFlex"
-                  onClick={() => {
-                    logout();
-                  }}
-                >
-                  <div className="userLogo">
-                    <LogoutRoundedIcon className="maincolor clickable" />
-                  </div>
-                  <div className="logout clickable">Logout</div>
-                </div>
-              </div>
-            )
-          }
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const SidebarSection = ({ ctx, sidebarCollapse }) => {
   return (
@@ -104,20 +58,11 @@ const SidebarSection = ({ ctx, sidebarCollapse }) => {
 };
 
 function Sidebar() {
-  const ctx = useContext(AuthLoginInfo);
-  const [sidebarCollapse, setSidebarCollapse] = useState(true);
-  const handleSidebarCollapse = () => {
-    sidebarCollapse ? setSidebarCollapse(false) : setSidebarCollapse(true);
-  };
+  const ctx = useContext(AuthLoginInfo); 
 
   return (
     <div className="SidebarWrapper">
-      <NavbarSection
-        ctx={ctx}
-        handleOnClick={handleSidebarCollapse}
-        sidebarCollapse={sidebarCollapse}
-      />
-      <SidebarSection ctx={ctx} sidebarCollapse={sidebarCollapse} />
+      <SidebarSection ctx={ctx} />
     </div>
   );
 }
