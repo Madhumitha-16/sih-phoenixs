@@ -3,13 +3,16 @@
     align-items: center;
     justify-content: center;
   }
-
+  form{
+    width: 70%;
+  }
   .bodyWrap{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 70%;
     height: 70%;
+    margin-left: 5%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     }
   .infoSide {
@@ -27,7 +30,6 @@
     text-align: center;
   }
   .Side {
-
     animation: gradient 12s ease infinite;
     color: #fff;
     border-radius: 50px;
@@ -51,7 +53,7 @@
   .contentRegisterWrap {
     height: 100%;
     width: 80%;
-    max-width: 1200px;
+    max-width: 1500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,7 +82,6 @@
     width: 100%;
     border-radius: 10px 10px 10px 10px;
     text-align: center;
-    padding: 5%;
     margin: 10% 5%;
     /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   }
@@ -94,9 +95,12 @@
   }
   
   .input-group {
-    margin-bottom: 35px;
     position: relative;
     margin: 2% 1% 6%;
+  }
+
+  .input-group label{
+    color: #161517;
   }
   
   .input {
@@ -169,6 +173,8 @@ label.focusLabel {
 .loginSide span {
   float: left
 }
+
+
 
 
 @keyframes gradient {
@@ -256,7 +262,7 @@ label.focusLabel {
     transition: 0.3s all ease-in-out;
   }
   
-  .loginSide button {
+  .button{
     font-size: 16px;
     display: block;
     border: none;
@@ -374,7 +380,7 @@ label.focusLabel {
     margin-bottom: 5px;
   }
   select {
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100px;

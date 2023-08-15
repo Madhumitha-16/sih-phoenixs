@@ -53,7 +53,6 @@ let data={
     Course: course.current.value,
     Department:dept.current.value,
     Password:psw.current.value
-    
 }
 try
 {
@@ -70,7 +69,7 @@ catch(e)
 
   return (<div className="bodyWrap">
     <div className="contentRegisterWrap">
-    
+    <form>
       <div className="RegisterSide">
         <div className="loginWrap">
           <h1>Register</h1>
@@ -92,17 +91,22 @@ catch(e)
         </div>
         </div>
         <div className="input-group">
-        <input type="text" className="input" onChange={e => setRegNo(e.target.value)} ref={regnum}  required/>
-        <label  className={`input-label ${regno.length > 0 ? "focusLabel" : ""}`} >Register No.</label>
+        <input
+        type="text"
+        className="input"
+        onChange={e => setRegNo(e.target.value)}
+        ref={regnum}
+        required
+        pattern="[0-9]*"
+        inputMode="numeric"
+    />
+        <label  className={`input-label ${regno.length > 0 ? "focusLabel" : ""}`} >Register No. [Only numbers]</label>
         </div>
-        <div className="input-row">
         <div className="input-group">
         <label>Course</label>
         <input type="radio" className="input-radio" ref={course} required value="BE" name="course"/>BE
         <input type="radio" className="input-radio"  required value="BTech" name="course"/>BTech
         </div>
-        </div>
-        <div className="input-row">
         <div className='input-group'>
         <label>Department</label>
         <select className='select' id="dropdown" ref={dept} value={selectedOption} onChange={handleSelectChange}> <option value="IT">IT</option>
@@ -110,27 +114,26 @@ catch(e)
             <option value="ADS">ADS</option>
             <option value="CSBS">CSBS</option>
         </select>
-        </div>
+        
         </div>
         </div>
         <div className="input-row">
-          <div className="input-group">
-            <input type="password" className="input password" ref={psw} onChange={e => setPassword(e.target.value)} required/>
-            <label className={`${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
-          </div>
-          <div className="input-group">
-            <input type="password" className="input password" onChange={e => setCurPassword(e.target.value)} required/>
-            <label className={`${curpassword.length > 0 ? "focusLabel" : ""}`}>Confirm Password</label>
-          
-          </div>
-
-        </div>
+            <div className="input-group">
+                <input type="password" className="input"  onChange={e => setPassword(e.target.value)} ref={psw} required/>
+                <label className={`input-label ${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
+            </div>
+            <div className="input-group">
+                <input type="password" className="input" onChange={e => setCurPassword(e.target.value)} required />
+                <label className={`input-label ${curpassword.length > 0 ? "focusLabel" : ""}`}>Confirm Password</label>
+            </div>
+            </div>
         <div>
-        <button onClick={login}>Register</button>
+        <input type='submit' className='button'  value="Register"/>
+        {/* <button onClick={login}>Register</button> */}
         </div>
        
         </div>
-        
+        </form>
       </div>
       <div className="infoSide">
         <div className="loginWrap">

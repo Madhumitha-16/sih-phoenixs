@@ -38,7 +38,8 @@ function App() {
                 } />
            
             <Route path='/register' element={
-                    <Fetch/>
+                    // <Fetch/>
+                    <Register />
                 } />
             <Route path='/team-registration' element={
                     <TeamDetails />

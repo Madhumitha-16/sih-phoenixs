@@ -197,7 +197,7 @@ function TeamDetails() {
        
       </div>
       <div className='team-button'>
-          <button>Register</button>
+          <button >Register</button>
         </div>
       
        
