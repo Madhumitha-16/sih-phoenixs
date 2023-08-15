@@ -14,8 +14,6 @@ export default function Register() {
   const [email, setEmail] = useState("")
   const [curpassword, setCurPassword] = useState("")
   const [regno,setRegNo] = useState("")
-
-
   const [selectedOption, setSelectedOption] = useState('');
   
   const handleSelectChange = (event) => {
@@ -31,7 +29,7 @@ const course=useRef();
 const dept=useRef();
 const psw=useRef();
 
-const ref=collection(db,"test2"); 
+const ref=collection(db,"Registeration"); 
 
 
 const login=async(e)=>

@@ -15,8 +15,6 @@ import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
 import Fetch from './Pages/fetch';
-
-
 import TeamDetails from './Pages/TeamDetails';
 //import Fetch from './Pages/fetch';
 
@@ -38,15 +36,12 @@ function App() {
                 } />
            
             <Route path='/register' element={
-                    // <Fetch/>
-                    <Register />
+                    <Register/>
                 } />
             <Route path='/team-registration' element={
                     <TeamDetails />
                 } />
             </Routes>
-
-
 
 
       </BrowserRouter>
