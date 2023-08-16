@@ -1,90 +1,59 @@
 import React, {useRef, useState} from 'react';
-//import axios from 'axios';
 import './Styles/register.css';
 import register from "../Assets/Images/regsiteration.png";
-import {db, firebase} from "../firebaseConfig"
-import {addDoc,collection} from "@firebase/firestore";
-import { use } from 'passport';
+import {auth} from "../firebaseConfig"
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+export default function Register()
+{
 
 
-export default function Register() {
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("")
-  const [curpassword, setCurPassword] = useState("")
-  const [regno,setRegNo] = useState("")
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [curpassword, setCurPassword] = useState("");
+  const [regnum,setRegNo] = useState("");
   const [selectedOption, setSelectedOption] = useState('');
-  
+  const [email,setemail]=useState("");
+  const[password,setPassword]=useState("");
   const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  //sending data from xxfield to db 
-const fname=useRef();
-const lname=useRef();
-const mailid=useRef();
-const regnum=useRef();
-const course=useRef();
-const dept=useRef();
-const psw=useRef();
-
-const ref=collection(db,"Registeration"); 
-
-
-const login=async(e)=>
-{
-e.preventDefault();
-console.log(fname.current.value);
-console.log(lname.current.value);
-console.log(mailid.current.value);
-console.log(regnum.current.value);
-console.log(course.current.value);
-console.log(dept.current.value);
-console.log(psw.current.value);
-
-let data={
-    First_name:fname.current.value,
-    Last_name:lname.current.value,
-    Email:mailid.current.value,
-    Register_number:regnum.current.value,
-    Course: course.current.value,
-    Department:dept.current.value,
-    Password:psw.current.value
-}
-try
-{
-    addDoc(ref,data);
-}
-catch(e)
-{
-    console.log(e);
-}
-
-};    
-
-
+      setSelectedOption(event.target.value);
+    };
+    
+   const signup=(e)=>
+    {
+        e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log(user);
+  })
+  
+  .catch((error) => {
+    const errorMessage = error.message;
+    console.log(errorMessage);
+  });
+};
 
   return (<div className="bodyWrap">
     <div className="contentRegisterWrap">
-    <form className="registerForm" onSubmit={login}>
+    <form className="registerForm" onSubmit={signup}>
       <div className="RegisterSide">
         <div className="loginWrap">
           <h1>Register</h1>
           <div className="input-row">
             <div className="input-group">
-                <input type="text" className="input"  onChange={e => setFirstName(e.target.value)} ref={fname} required/>
+                <input type="text" className="input" onChange={e => setFirstName(e.target.value)} required/>
                 <label className={`input-label ${firstName.length > 0 ? "focusLabel" : ""}`}>First Name</label>
             </div>
             <div className="input-group">
-                <input type="text" className="input" onChange={e => setLastName(e.target.value)} ref={lname} required />
+                <input type="text" className="input" onChange={e => setLastName(e.target.value)}  required />
                 <label className={`input-label ${lastName.length > 0 ? "focusLabel" : ""}`}>Last Name</label>
             </div>
             </div>
             <div className="input-row">
 
         <div className="input-group">
-        <input type="email" className="input" onChange={e => setEmail(e.target.value)}  ref={mailid} required/>
+        <input type="email" className="input" onChange={e => setemail(e.target.value)} required/>
         <label className={`input-label ${email.length > 0 ? "focusLabel" : ""}`}>Email</label>
         </div>
         </div>
@@ -93,21 +62,20 @@ catch(e)
         type="text"
         className="input"
         onChange={e => setRegNo(e.target.value)}
-        ref={regnum}
         required
         pattern="[0-9]*"
         inputMode="numeric"
-    />
-        <label  className={`input-label ${regno.length > 0 ? "focusLabel" : ""}`} >Register No. [Only numbers]</label>
+        />
+        <label className={`input-label ${regnum.length > 0 ? "focusLabel" : ""}`}>Register No. [Only numbers]</label>
         </div>
         <div className="input-group">
         <label>Course</label>
-        <input type="radio" className="input-radio" ref={course} required value="BE" name="course"/>BE
+        <input type="radio" className="input-radio"  required value="BE" name="course"/>BE
         <input type="radio" className="input-radio"  required value="BTech" name="course"/>BTech
         </div>
         <div className='input-group'>
         <label>Department</label>
-        <select className='select' id="dropdown" ref={dept} value={selectedOption} onChange={handleSelectChange}> <option value="IT">IT</option>
+        <select className='select' id="dropdown"  value={selectedOption} onChange={handleSelectChange} > <option value="IT">IT</option>
             <option value="CSE">CSE</option>
             <option value="ADS">ADS</option>
             <option value="CSBS">CSBS</option>
@@ -117,7 +85,7 @@ catch(e)
         </div>
         <div className="input-row">
             <div className="input-group">
-                <input type="password" className="input"  onChange={e => setPassword(e.target.value)} ref={psw} required/>
+                <input type="password" className="input"  onChange={e => setPassword(e.target.value)}  required/>
                 <label className={`input-label ${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
             </div>
             <div className="input-group">

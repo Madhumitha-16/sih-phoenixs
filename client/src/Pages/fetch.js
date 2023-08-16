@@ -9,7 +9,7 @@ export default function Fetch() {
   async function Fetchsingle(e)
   {
     e.preventDefault();
-    const docRef = doc(db, "test2","uGMvxH4HYWnqQwBiL0YD");
+    const docRef = doc(db, "Team_Details","vI5k1qjYBkH6qQo4qZZA");
     const docSnap = await getDoc(docRef);
   
     if (docSnap.exists()) 
