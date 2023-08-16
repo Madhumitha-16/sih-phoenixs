@@ -12,12 +12,10 @@ import AdminRoute  from './AuthComponents/AdminRoute';
 import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo }  from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
-import Fetch from './Pages/fetch';
 import TeamDetails from './Pages/TeamDetails';
-import Test from './Pages/test';
 import Phase1 from './Pages/Phase1';
-//import Fetch from './Pages/fetch';
-
+import Logintest from './Pages/Logintest';
+import Signuptest from './Pages/Signuptest';
 
 
 function App() {
@@ -35,8 +33,14 @@ function App() {
                   </LoginRoute>
                 } />
            
-            <Route path='/' element={
+            <Route path='/register' element={
                     <Register/>
+                } />
+                 <Route path='/logintest' element={
+                    <Logintest/>
+                } />
+                <Route path='/signuptest' element={
+                    <Signuptest/>
                 } />
             <Route path='/team-registration' element={
                     <TeamDetails />
