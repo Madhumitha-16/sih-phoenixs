@@ -1,0 +1,22 @@
+.contentTeamWrap{
+    width: 100%;
+    
+}
+.bodyWrap.dashboardPage{
+    align-items: flex-start;
+   
+}
+.column {
+    float: left;
+    width: 33.33%;
+    background-color: aqua;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .heading{
+    width: 100%;
+  }

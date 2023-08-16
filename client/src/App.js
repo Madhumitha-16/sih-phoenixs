@@ -16,6 +16,10 @@ import Fetch from './Pages/fetch';
 import TeamDetails from './Pages/TeamDetails';
 import Test from './Pages/test';
 import Phase1 from './Pages/Phase1';
+import { Home } from './Pages/home';
+import Phase2 from './Pages/Phase2';
+import Phase3 from './Pages/Phase3';
+import Team from './Pages/Team';
 //import Fetch from './Pages/fetch';
 
 
@@ -27,19 +31,20 @@ function App() {
       <>
       <BrowserRouter>
       <Routes>
-
-
             <Route path='/login' element={
                   <LoginRoute>
                     <Login />
                   </LoginRoute>
                 } />
            
-            <Route path='/' element={
+            <Route path='/register' element={
                     <Register/>
                 } />
             <Route path='/team-registration' element={
                     <TeamDetails />
+                } />
+              <Route path='/' element={
+                  <Home />
                 } />
             </Routes>
 
@@ -60,6 +65,24 @@ function App() {
                     <PrivateRoute>
                   <Sidebar />
                   <Phase1 />
+                    </PrivateRoute>
+                  } />
+                  <Route path='/phase2' element={
+                    <PrivateRoute>
+                  <Sidebar />
+                  <Phase2 />
+                    </PrivateRoute>
+                  } />
+                  <Route path='/phase3' element={
+                    <PrivateRoute>
+                  <Sidebar />
+                  <Phase3 />
+                    </PrivateRoute>
+                  } />
+                  <Route path='/team' element={
+                    <PrivateRoute>
+                  <Sidebar />
+                  <Team />
                     </PrivateRoute>
                   } />
                 <Route path='/orders/:orderId' element={
