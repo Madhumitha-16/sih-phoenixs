@@ -7,10 +7,11 @@ import { auth } from "../firebaseConfig";
 
 
 export default function Login() {
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
- 
+  
+      
       signInWithEmailAndPassword(auth,username,password)
       .then((userCredential)=>
       {    
@@ -20,8 +21,7 @@ export default function Login() {
       {
         const errorMessage = error.message;
         console.log(errorMessage);
-      })
-  
+      }); 
   
 
   return (
