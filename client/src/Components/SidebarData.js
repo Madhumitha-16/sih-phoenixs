@@ -18,7 +18,7 @@ export const SidebarData = [
   {
     title: "Team",
     icon: <Groups />,
-    link: "/team-details"
+    link: "/team"
   },
   {
     title: "Phase I",

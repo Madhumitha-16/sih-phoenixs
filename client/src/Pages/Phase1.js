@@ -1,48 +1,32 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './Styles/phase1.css';
 
 function Phase1() {
 
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-
-const login = () => {
-  axios
-    .post(
-      "http://localhost:5000/login",
-      {
-        username,
-        password,
-      },
-      { withCredentials: true }
-    )
-    .then((res) => {
-      if (res.data === "success") {
-        window.location.href = "/";
-      }
-    });
-};
-
   return (
-    <div className='bodyWrap'>
-        <div>
-            <h4>Phase-1</h4>
-        </div>
+   
+    <div className='bodyWrap dashboardPage'>
+    
         <div className="contentLoginWrap">
-          <form className="loginForm" onSubmit={login}>
-            <div className="loginSide">
+       
+          <form className="loginForm">
+          <div className='heading'>
+            <h2>Phase-1</h2>
+            <hr></hr>
+        </div>
+            <div className="phaseSide">
+            <h4>Project Details</h4>
               <div className="loginWrap">
-                <h4>Project Details</h4>
                 <div className="input-group">
                   <input
                     type="text"
                     className="input"
-                    onChange={(e) => setUsername(e.target.value)}
                     required
                   />
                   <label
-                    className={`${username.length > 0 ? "focusLabel" : ""}`}
+                    // className={`${username.length > 0 ? "focusLabel" : ""}`}
                   >
                     Project Title<span className="asterisk"> * </span>
                   </label>
@@ -58,14 +42,9 @@ const login = () => {
     
         </div>
         <div className="input-group">
-                  <input
-                    type="text-field"
-                    className="input"
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                  />
+                  <textarea name="abstract" cols="65" rows="10" required></textarea>
                   <label
-                    className={`${username.length > 0 ? "focusLabel" : ""}`}
+                    // className={`${username.length > 0 ? "focusLabel" : ""}`}
                   >
                     Abstract<span className="asterisk"> * </span>
                   </label>
@@ -76,7 +55,6 @@ const login = () => {
             </div>
           </form>
         </div>
-
     </div>
   )
 }

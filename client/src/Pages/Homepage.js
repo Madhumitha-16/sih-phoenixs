@@ -136,7 +136,7 @@ function Homepage() {
     };
 
     return (
-      
+  <div className="bodyWrap dashboardPage">
       <div className="topPanelWrap">
       
         <div className="topPanelDataRangeBox">
@@ -217,6 +217,7 @@ function Homepage() {
           </div>
         </div>
       </div>
+      </div>
     );
   };
 
@@ -225,7 +226,9 @@ function Homepage() {
 
   return (
     <div className="bodyWrap dashboardPage">
+    <div className="topPanelWrap">
       <TopPanel />
+      </div>
     </div>
   );
 }
