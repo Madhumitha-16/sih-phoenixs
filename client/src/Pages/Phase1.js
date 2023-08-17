@@ -13,7 +13,7 @@ function Phase1() {
        
           <form className="loginForm">
           <div className='heading'>
-            <h2>Phase-1</h2>
+            <h2>Phase-I</h2>
             <hr></hr>
         </div>
             <div className="phaseSide">
@@ -31,7 +31,6 @@ function Phase1() {
                     Project Title<span className="asterisk"> * </span>
                   </label>
                 </div>
-                <form>
                 <div className='input-group'>
         <label>Domain</label>
         <select className='select' id="dropdown"><option value="IoT">IoT</option>
@@ -50,11 +49,14 @@ function Phase1() {
                   </label>
                 </div>
                   <input type="submit" value="Submit" className="button"/>
-                </form>
               </div>
+              
             </div>
+          
           </form>
+          
         </div>
+        
     </div>
   )
 }

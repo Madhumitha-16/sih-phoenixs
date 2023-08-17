@@ -2,18 +2,17 @@ import React, { useEffect, useState } from 'react'
 import  {db}  from "../firebaseConfig.js";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-// import { collection, query, where, getDocs } from "@firebase/firestore";
 import { doc, getDoc} from "firebase/firestore"; 
 import "./Styles/team.css";
 
 const Team = () => {
-    const [data,setData]=useState([]);
+
     const [teamLeaderData, setTeamLeaderData] = useState({});
     const [teamMember1Data, setTeamMember1Data] = useState({});
-
     const [teamMember2Data, setTeamMember2Data] = useState({});
-
     const [teamMember3Data, setTeamMember3Data] = useState({});
+
+
 
     function capitalizeFirstLetter(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
@@ -53,8 +52,8 @@ const Team = () => {
     ];
 
     useEffect(() => {
-      // Example: Fetch data from Firestore
-      const docRef = doc(db, 'Team_Details', 'RIOitCcuxMN8qJ8yS5ZL');
+      
+      const docRef = doc(db, 'Team_Details', "112");
   
       getDoc(docRef)
         .then((docSnap) => {
@@ -77,7 +76,7 @@ const Team = () => {
               }, {});
             setTeamMember1Data(teamMember1Properties);
 
-            // Filter "Team_Member1" properties
+            // Filter "Team_Member2" properties
             const teamMember2Properties = Object.keys(docSnap.data())
             .filter(key => key.startsWith('Team_Member2'))
             .reduce((obj, key) => {
@@ -86,7 +85,7 @@ const Team = () => {
             }, {});
           setTeamMember2Data(teamMember2Properties);
 
-          // Filter "Team_Member1" properties
+          // Filter "Team_Member3" properties
           const teamMember3Properties = Object.keys(docSnap.data())
           .filter(key => key.startsWith('Team_Member3'))
           .reduce((obj, key) => {
@@ -103,23 +102,6 @@ const Team = () => {
           console.error("Error fetching document:", error);
         });
     }, []);
-
-  // async function Fetchsingle(e) {
-  //   const docRef = doc(db, "Team_Details", "vI5k1qjYBkH6qQo4qZZA");
-  //   const docSnap = await getDoc(docRef);
-
-  //   if (docSnap.exists()) {
-  //     console.log("Document data:", docSnap.data());
-  //     setData(docSnap.data()); // Store the fetched data in the state
-  //   } else {
-  //     console.log("No such document!");
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   Fetchsingle();
-  // }, []);
-
 
     
   return (

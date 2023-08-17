@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Styles/login.css";
 import login_img from "../Assets/Images/Secure login.gif";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { useNavigate } from 'react-router-dom';
 
-
-export default function Login() {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
- 
+ const loginfunc=(e)=>{
+      e.preventDefault();
       signInWithEmailAndPassword(auth,username,password)
       .then((userCredential)=>
       {    
         const user = userCredential.user;
-        console.log(user);
+        console.log(user.uid);
+        setUserId(user.uid)
       }).catch((error)=>
       {
         const errorMessage = error.message;
         console.log(errorMessage);
-      })
+      });
+    };
+  
+    useEffect(() => {
+      if (userId) { 
+        navigate(`/home/${userId}`); 
+      }
+    }, [userId, navigate]);
+    
   
   
 
@@ -32,7 +44,7 @@ export default function Login() {
       <div className="body">
         <div className="contentLoginWrap">
 
-          <form className="loginForm" onSubmit={Login}>
+          <form className="loginForm" onSubmit={loginfunc}>
             <div className="loginSide">
               <div className="loginWrap">
                 <h1>Log in</h1>
@@ -50,7 +62,6 @@ export default function Login() {
                     Email ID<span className="asterisk"> * </span>
                   </label>
                 </div>
-                <form>
                   <div className="input-group">
                     <input
                       type="password"
@@ -66,9 +77,8 @@ export default function Login() {
                     </label>
                   </div>
                   <input type="submit" value="Login" className="button"/>
-                </form>
                 <h4>Haven't registered yet ? 
-                <Link to="/register" className="maincolor">
+                <Link to="/register">
                 Register here!
                 </Link></h4>
               </div>
@@ -84,3 +94,4 @@ export default function Login() {
     </>
   );
 }
+export default Login;
