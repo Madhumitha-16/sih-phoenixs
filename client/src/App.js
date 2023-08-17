@@ -42,6 +42,9 @@ function App() {
                 <Route path='/signuptest' element={
                     <Signuptest/>
                 } />
+                <Route path='/Phase1' element={
+                    <Phase1/>
+                } />
             <Route path='/team-registration' element={
                     <TeamDetails />
                 } />

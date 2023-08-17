@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function Phase1() {
 
-    const [username, setUsername] = useState("");
+const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 
 const login = () => {

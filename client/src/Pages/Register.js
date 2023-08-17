@@ -1,8 +1,8 @@
 import React, {useRef, useState} from 'react';
 import './Styles/register.css';
 import register from "../Assets/Images/regsiteration.png";
-import {auth} from "../firebaseConfig"
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth} from "../firebaseConfig";
+import {createUserWithEmailAndPassword} from 'firebase/auth';
 
 export default function Register()
 {
