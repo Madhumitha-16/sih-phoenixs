@@ -6,23 +6,27 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
 
-export default function Login() {
+export default function Login() 
+{
   
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   
-      
-      signInWithEmailAndPassword(auth,username,password)
+  const loginfunc=(e)=>
+  {
+    e.preventDefault();  
+  signInWithEmailAndPassword(auth,username,password)
       .then((userCredential)=>
       {    
         const user = userCredential.user;
         console.log(user);
-      }).catch((error)=>
+      })
+      .catch((error)=>
       {
         const errorMessage = error.message;
         console.log(errorMessage);
       }); 
-  
+    } ;
 
   return (
     <>
@@ -32,7 +36,7 @@ export default function Login() {
       <div className="body">
         <div className="contentLoginWrap">
 
-          <form className="loginForm" onSubmit={Login}>
+          <form className="loginForm" onSubmit={loginfunc}>
             <div className="loginSide">
               <div className="loginWrap">
                 <h1>Log in</h1>
@@ -50,7 +54,6 @@ export default function Login() {
                     Email ID<span className="asterisk"> * </span>
                   </label>
                 </div>
-                <form>
                   <div className="input-group">
                     <input
                       type="password"
@@ -66,7 +69,6 @@ export default function Login() {
                     </label>
                   </div>
                   <input type="submit" value="Login" className="button"/>
-                </form>
                 <h4>Haven't registered yet ? 
                 <Link to="/register" className="maincolor">
                 Register here!
