@@ -1,50 +1,124 @@
 import React, { useEffect, useState } from 'react'
-import { db } from "../firebaseConfig.js";
+import  {db}  from "../firebaseConfig.js";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 // import { collection, query, where, getDocs } from "@firebase/firestore";
 import { doc, getDoc} from "firebase/firestore"; 
 import "./Styles/team.css";
 
 const Team = () => {
-    // const [data,setData]=useState([]);
-    // async function Fetchsingle(e)
-    // {
-    //   e.preventDefault();
-    //   const docRef = doc(db, "Team_Details","vI5k1qjYBkH6qQo4qZZA");
-    //   const docSnap = await getDoc(docRef);
-    
-    //   if (docSnap.exists()) 
-    // {
-    //     console.log("Document data:", docSnap.data());
-    //     // setData(docSnap.data());
-        
-    // } 
-    // else 
-    // {
-    // console.log("No such document!");
-    // }
-    // }
-    const [data, setData] = useState(null); // Initialize state to store the fetched data
+    const [data,setData]=useState([]);
+    const [teamLeaderData, setTeamLeaderData] = useState({});
+    const [teamMember1Data, setTeamMember1Data] = useState({});
 
-  async function Fetchsingle(e) {
-    // e.preventDefault();
-    const docRef = doc(db, "Team_Details", "vI5k1qjYBkH6qQo4qZZA");
-    const docSnap = await getDoc(docRef);
+    const [teamMember2Data, setTeamMember2Data] = useState({});
 
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      setData(docSnap.data()); // Store the fetched data in the state
-    } else {
-      console.log("No such document!");
+    const [teamMember3Data, setTeamMember3Data] = useState({});
+
+    function capitalizeFirstLetter(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
-  }
 
+    const teamLeaderKeys = [
+      'Team_Leader_firstname',
+      'Team_Leader_lastname',
+      'Team_Leader_Regnum',
+      'Team_Leader_Mailid',
+      'Team_Leader_Course',
+      'Team_Leader_Department',
+    ];
+    const teamMember1Keys = [
+      'Team_Member1_firstname',
+      'Team_Member1_lastname',
+      'Team_Member1_Regnum',
+      'Team_Member1_Mailid',
+      'Team_Member1_Course',
+      'Team_Member1_Department',
+    ];
+    const teamMember2Keys = [
+      'Team_Member2_firstname',
+      'Team_Member2_lastname',
+      'Team_Member2_Regnum',
+      'Team_Member2_Mailid',
+      'Team_Member2_Course',
+      'Team_Member2_Department',
+    ];
+    const teamMember3Keys = [
+      'Team_Member3_firstname',
+      'Team_Member3_lastname',
+      'Team_Member3_Regnum',
+      'Team_Member3_Mailid',
+      'Team_Member3_Course',
+      'Team_Member3_Department',
+    ];
 
+    useEffect(() => {
+      // Example: Fetch data from Firestore
+      const docRef = doc(db, 'Team_Details', 'RIOitCcuxMN8qJ8yS5ZL');
+  
+      getDoc(docRef)
+        .then((docSnap) => {
+          if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+  
+            // Filter "Team_Leader" properties
+            const teamLeaderProperties = teamLeaderKeys.reduce((obj, key) => {
+              obj[key] = docSnap.data()[key];
+              return obj;
+            }, {});
+              setTeamLeaderData(teamLeaderProperties);
 
+              // Filter "Team_Member1" properties
+              const teamMember1Properties = Object.keys(docSnap.data())
+              .filter(key => key.startsWith('Team_Member1'))
+              .reduce((obj, key) => {
+                obj[key] = docSnap.data()[key];
+                return obj;
+              }, {});
+            setTeamMember1Data(teamMember1Properties);
 
-  // Fetch data when the component mounts
-  useEffect(() => {
-    Fetchsingle();
-  }, []);
+            // Filter "Team_Member1" properties
+            const teamMember2Properties = Object.keys(docSnap.data())
+            .filter(key => key.startsWith('Team_Member2'))
+            .reduce((obj, key) => {
+              obj[key] = docSnap.data()[key];
+              return obj;
+            }, {});
+          setTeamMember2Data(teamMember2Properties);
+
+          // Filter "Team_Member1" properties
+          const teamMember3Properties = Object.keys(docSnap.data())
+          .filter(key => key.startsWith('Team_Member3'))
+          .reduce((obj, key) => {
+            obj[key] = docSnap.data()[key];
+            return obj;
+          }, {});
+        setTeamMember3Data(teamMember3Properties);
+          } 
+          else {
+            console.log("No such document!");
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching document:", error);
+        });
+    }, []);
+
+  // async function Fetchsingle(e) {
+  //   const docRef = doc(db, "Team_Details", "vI5k1qjYBkH6qQo4qZZA");
+  //   const docSnap = await getDoc(docRef);
+
+  //   if (docSnap.exists()) {
+  //     console.log("Document data:", docSnap.data());
+  //     setData(docSnap.data()); // Store the fetched data in the state
+  //   } else {
+  //     console.log("No such document!");
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   Fetchsingle();
+  // }, []);
 
 
     
@@ -53,22 +127,59 @@ const Team = () => {
     <div className='heading'>
         <h2>Team Details</h2>
         <hr></hr>
-        <button onClick={Fetchsingle}>Get</button>
+    <div className='container'>
     <div className='leader'>
-        <h4>Team Leader</h4>
-        <h6>{data}</h6>
+    <div className='text-container'>
+      <h2><strong>Team Leader:</strong></h2>
+      <hr></hr>
+      {teamLeaderKeys.map(key => (
+        <div key={key} style={{ display: 'flex' }}>
+          <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Leader_', ''))}</div>
+          <div>: {teamLeaderData[key]}</div>
+        </div>
+      ))}
+    </div>
     </div>
     <div class="row">
   <div class="column">
-  <h4>Team Member</h4>
+  <div className='text-container'>
+    <h2><strong>Team Member 1</strong></h2>  
+      <hr></hr>
+      {teamMember1Keys.map(key => (
+        <div key={key} style={{ display: 'flex' }}>
+        <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Member1_', ''))}</div>
+        <div>: {teamMember1Data[key]}</div>
+        </div>
+      ))}
+    </div>
   </div>
   <div class="column">
-  <h4>Team Member</h4>
+ 
+  <div className='text-container'>
+      <h2><strong>Team Member 2</strong></h2>
+      <hr></hr>
+      {teamMember2Keys.map(key => (
+        <div key={key} style={{ display: 'flex' }}>
+        <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Member2_', ''))}</div>
+        <div>: {teamMember2Data[key]} </div>
+        </div>
+      ))}
+    </div>
   </div>
   <div class="column">
-  <h4>Team Member</h4>
+  <div className='text-container'>
+      <h2><strong>Team Member 3</strong></h2>
+      <hr></hr>
+      {teamMember3Keys.map(key => (
+        <div key={key} style={{ display: 'flex' }}>
+        <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Member3_', ''))}</div>
+        <div>: {teamMember3Data[key]}</div>
+        </div>
+      ))}
+    </div>
   </div>
 </div>
+    </div>
     </div>
     </div>
   )

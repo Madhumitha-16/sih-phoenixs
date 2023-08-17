@@ -8,9 +8,12 @@
 }
 .column {
     float: left;
-    width: 33.33%;
-    background-color: aqua;
-  }
+    width: 29%;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    margin: 2% 2% 0 0%;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; }
   
   .row:after {
     content: "";
@@ -19,4 +22,22 @@
   }
   .heading{
     width: 100%;
+  }
+  .leader{
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    margin: 2% 2% 0 0%;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
+
+  }
+  .container{
+    line-height: 150%;
+    
+  }
+  .text-container{
+    font-size: 14px;
+  }
+  .text-container h2{
+    margin: 5px 0px 5px 0px;
   }

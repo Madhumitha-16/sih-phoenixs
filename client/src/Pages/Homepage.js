@@ -226,7 +226,9 @@ function Homepage() {
 
   return (
     <div className="bodyWrap dashboardPage">
+    <div className="topPanelWrap">
       <TopPanel />
+      </div>
     </div>
   );
 }

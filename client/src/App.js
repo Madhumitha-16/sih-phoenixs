@@ -22,6 +22,7 @@ import Team from './Pages/Team';
 
 import Logintest from './Pages/Logintest';
 import Signuptest from './Pages/Signuptest';
+import Submissions from './Pages/Submissions';
 
 
 function App() {
@@ -89,6 +90,12 @@ function App() {
                     <PrivateRoute>
                   <Sidebar />
                   <Team />
+                    </PrivateRoute>
+                  } />
+                   <Route path='/submissions' element={
+                    <PrivateRoute>
+                  <Sidebar />
+                  <Submissions />
                     </PrivateRoute>
                   } />
                 <Route path='/orders/:orderId' element={
