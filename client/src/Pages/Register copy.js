@@ -9,8 +9,8 @@
 
 
 // // export default function Register() {
-// //   const [firstName, setFirstName] = useState("")
-// //   const [lastName, setLastName] = useState("")
+//   const [firstName, setFirstName] = useState("")
+//   const [lastName, setLastName] = useState("")
 // //   const [password, setPassword] = useState("")
 // //   const [email, setEmail] = useState("")
 // //   const [curpassword, setCurPassword] = useState("")
@@ -33,36 +33,36 @@
 // // const ref=collection(db,"Registeration"); 
 
 
-// // const login=async(e)=>
-// // {
-// // e.preventDefault();
-// // console.log(fname.current.value);
-// // console.log(lname.current.value);
-// // console.log(mailid.current.value);
-// // console.log(regnum.current.value);
-// // console.log(course.current.value);
-// // console.log(dept.current.value);
-// // console.log(psw.current.value);
+// const login=async(e)=>
+// {
+// e.preventDefault();
+// console.log(fname.current.value);
+// console.log(lname.current.value);
+// console.log(mailid.current.value);
+// console.log(regnum.current.value);
+// console.log(course.current.value);
+// console.log(dept.current.value);
+// console.log(psw.current.value);
 
-// // let data={
-// //     First_name:fname.current.value,
-// //     Last_name:lname.current.value,
-// //     Email:mailid.current.value,
-// //     Register_number:regnum.current.value,
-// //     Course: course.current.value,
-// //     Department:dept.current.value,
-// //     Password:psw.current.value
-// // }
-// // try
-// // {
-// //     addDoc(ref,data);
-// // }
-// // catch(e)
-// // {
-// //     console.log(e);
-// // }
+// let data={
+//     First_name:fname.current.value,
+//     Last_name:lname.current.value,
+//     Email:mailid.current.value,
+//     Register_number:regnum.current.value,
+//     Course: course.current.value,
+//     Department:dept.current.value,
+//     Password:psw.current.value
+// }
+// try
+// {
+//     addDoc(ref,data);
+// }
+// catch(e)
+// {
+//     console.log(e);
+// }
 
-// // };    
+// };    
 
 
 // export default function Register()
