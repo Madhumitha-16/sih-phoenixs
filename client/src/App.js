@@ -18,7 +18,6 @@ import { Home } from './Pages/home';
 import Phase2 from './Pages/Phase2';
 import Phase3 from './Pages/Phase3';
 import Team from './Pages/Team';
-//import Logintest from './Pages/Logintest';
 import Signuptest from './Pages/Signuptest';
 import Submissions from './Pages/Submissions';
 import MainSideBar from './Components/MainSideBar';
@@ -39,7 +38,7 @@ function App() {
           }
         />
         <Route path="/register" element={<Register />} />
-        <Route path="/logintest" element={<Logintest />} />
+        
         <Route path="/signuptest" element={<Signuptest />} />
         <Route
           path="/team-registration"
