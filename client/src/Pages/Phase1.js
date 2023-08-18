@@ -4,16 +4,17 @@ import {db} from "../firebaseConfig"
 import {addDoc,collection} from "@firebase/firestore";
 import { useNavigate, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import phase1 from '../Assets/Images/phase_1.png';
 
 function Phase1() {
   const userId = useParams();
+  const navigate = useNavigate();
   const [project_title, setproject_title] = useState("");
   const [abstract,setabstact ] = useState("");
   const [domain,setdomain ] = useState("");
   const [docId,setDocId]= useState();
   const notify = () => toast.success('Submitted Successfully');
   const err = () => toast.error('Submission Failed!');
-
   const handlesetdomain=(e)=>
   {
     setdomain(e.target.value);
@@ -62,64 +63,86 @@ catch(e)
 
   return (
    
-    <div className='bodyWrap dashboardPage'>
-    
-        <div className="contentLoginWrap">
-          <form className="loginForm" onSubmit={prjdet}>
-          <div className='heading'>
-            <h2>Phase-I</h2>
-            <hr></hr>
+<div className="bodyWrap dashboardPage twoColumnLayout">
+      <Toaster
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: 'green',
+              secondary: 'white',
+            },
+          },
+        }}
+      />
+      <div className="contentLoginWrap formColumn">
+        <div className="heading">
+          <h2>Phase-I</h2>
+          <hr></hr>
         </div>
-            <div className="phaseSide">
+        <form className="loginForm" onSubmit={prjdet}>
+          <div className="phaseSide">
             <h4>Project Details</h4>
-              <div className="loginWrap">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="input"
-                    onChange={e=>setproject_title(e.target.value)}
-                    ref={prjtitle}
-                    required
-                  />
-                  <label
-                   className={`${project_title.length > 0 ? "focusLabel" : ""}`}
-                  >
-                    Project Title<span className="asterisk"> * </span>
-                  </label>
-                </div>
-                
-                <div className='input-group'>
-        <label>Domain</label>
-        <select className='select' id="dropdown" ref={dom} value={domain} onchange={handlesetdomain}><option value="IoT">IoT</option>
-            <option value="IoT with AI">IoT with AI</option>
-            <option value="IoT with Cloud">IoT with Cloud</option>
-            <option value="IoT with AR/VR">IoT with AR/VR</option>
-        </select>
-    
-        </div>
-        <div className="input-group">
-        <textarea name="abstract" cols="65" rows="10"
-        onChange={e=>setabstact(e.target.value)}
-        ref={abs}required></textarea>
-
-                  <label
-                    className={`${abstract.length > 0 ? "focusLabel" : ""}`}
-                  >
-                    Abstract<span className="asterisk"> * </span>
-                  </label>
-                </div>
-                  <input type="submit" value="Submit" className="button"/>
-                
+            <div className="loginWrap">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="input"
+                  onChange={(e) => setproject_title(e.target.value)}
+                  ref={prjtitle}
+                  required
+                />
+                <label
+                  className={`${
+                    project_title.length > 0 ? 'focusLabel' : ''
+                  }`}
+                >
+                  Project Title<span className="asterisk"> * </span>
+                </label>
               </div>
-              
+
+              <div className="input-group">
+                <label>Domain</label>
+                <select
+                  className="select"
+                  id="dropdown"
+                  ref={dom}
+                  value={domain}
+                  onChange={handlesetdomain}
+                >
+                  <option value="IoT">IoT</option>
+                  <option value="IoT with AI">IoT with AI</option>
+                  <option value="IoT with Cloud">IoT with Cloud</option>
+                  <option value="IoT with AR/VR">IoT with AR/VR</option>
+                </select>
+              </div>
+              <div className="input-group">
+                <textarea
+                  name="abstract"
+                  cols="65"
+                  rows="10"
+                  onChange={(e) => setabstact(e.target.value)}
+                  ref={abs}
+                  required
+                ></textarea>
+                <label>
+                  Abstract<span className="asterisk"> * </span>
+                </label>
+              </div>
+              <input type="submit" value="Submit" className="button" />
             </div>
-          
-          </form>
-          
-        </div>
-        
+          </div>
+        </form>
+      </div>
+      {/* Separate div for the image */}
+      <div className="imageContainer">
+        <img
+       src={phase1} width={"80%"} height={"80%"}
+        />
+      </div>
+      
     </div>
-  )
+    
+  );
 }
 
 export default Phase1

@@ -28,17 +28,17 @@ export const SidebarData = [
   {
     title: "Phase II",
     icon: <TodayRoundedIcon />,
-    link: "/phase2"
+    link: "/phase2/:userId"
   },
   {
     title: "Phase III",
     icon: <AssistantPhotoIcon />,
-    link: "/phase3"
+    link: "/phase3/:userId"
   },
   {
     title: "Submissions",
     icon: <RemoveRedEyeIcon />,
-    link: "/submissions"
+    link: "/submissions/:userId"
   },
   {
     title: "Logout",
