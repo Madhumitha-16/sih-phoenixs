@@ -39,7 +39,7 @@ function App() {
           }
         />
         <Route path="/register" element={<Register />} />
-        <Route path="/logintest" element={<Logintest />} />
+        {/* <Route path="/logintest" element={<Logintest />} /> */}
         <Route path="/signuptest" element={<Signuptest />} />
         <Route
           path="/team-registration/:userId"
