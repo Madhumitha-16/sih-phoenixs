@@ -25,7 +25,7 @@ const Team = () => {
    
         const q = query(
           collection(db, "Team_Details"),
-          where("userid", "==", userId)
+          where("userid", "==", userId.userId)
         );
         
         const querySnapshot = await getDocs(q);
@@ -46,7 +46,7 @@ const Team = () => {
 
       useEffect(() => {
       fetchUser();
-    }, [userId.userId]);
+    }, []);
    
     const teamLeaderKeys = [
       'Team_Leader_firstname',

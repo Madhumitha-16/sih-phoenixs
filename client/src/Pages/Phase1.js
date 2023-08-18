@@ -41,13 +41,13 @@ let data={
     Project_Title:prjtitle.current.value,
     Abstract:abs.current.value,
     Domain:dom.current.value,    
-    userid:""
+    userid:userId.userId
 }
    
 try
 {
     // addDoc(ref,data);
-    const docRef=await addDoc(collection(db,"Team_Details"),data);
+    const docRef=await addDoc(collection(db,"PhaseI"),data);
     console.log("Document written with ID:",docRef.id);
     setDocId(docRef.id)
 }

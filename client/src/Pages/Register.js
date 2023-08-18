@@ -39,7 +39,7 @@ export default function Register()
       setPassword(newPassword);
   
       if (!validatePassword(newPassword)) {
-        setPasswordError("Password must be at least 8 characters long.");
+        setPasswordError("Password must be at least 6 characters long.");
       } else {
         setPasswordError("");
       }
@@ -54,17 +54,6 @@ export default function Register()
       } else {
         setConfirmPasswordError("");
       }
-    };
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      if (!validatePassword(password) || password !== curpassword) {
-        err();
-        return; // 
-      }
-        signup();
- 
     };
     
     useEffect(() => {
@@ -103,7 +92,7 @@ export default function Register()
         },
       }} />
     <div className="contentRegisterWrap">
-    <form className="registerForm" onSubmit={handleSubmit}>
+    <form className="registerForm" onSubmit={signup}>
       <div className="RegisterSide">
         <div className="loginWrap">
           <h1>Register</h1>
@@ -152,12 +141,38 @@ export default function Register()
         </div>
         <div className="input-row">
             <div className="input-group">
-                <input type="password" className="input"  onChange={e => setPassword(e.target.value)}  required/>
-                <label className={`input-label ${password.length > 0 ? "focusLabel" : ""}`}>Password</label>
+            <input
+              type="password"
+              className="input"
+              onChange={handlePasswordChange}
+              required
+            />
+            <label
+              className={`input-label ${
+                password.length > 0 ? "focusLabel" : ""
+              }`}
+            >
+              Password
+            </label>
+            {passwordError && <p className="error">{passwordError}</p>}
             </div>
             <div className="input-group">
-                <input type="password" className="input" onChange={e => setCurPassword(e.target.value)} required />
-                <label className={`input-label ${curpassword.length > 0 ? "focusLabel" : ""}`}>Confirm Password</label>
+            <input
+              type="password"
+              className="input"
+              onChange={handleConfirmPasswordChange}
+              required
+            />
+            <label
+              className={`input-label ${
+                curpassword.length > 0 ? "focusLabel" : ""
+              }`}
+            >
+              Confirm Password
+            </label>
+            {confirmPasswordError && (
+              <p className="error">{confirmPasswordError}</p>
+            )}
             </div>
             </div>
         <div>
@@ -172,7 +187,7 @@ export default function Register()
         <div className="loginWrap">
           <h2>Nalaiyathiran</h2>
           <hr></hr>
-          <p>Log in, collaborate with your team and submit your innovations here!  .</p>
+          <h5>Log in, collaborate with your team and submit your innovations here!  .</h5>
           <img src={register} />
         </div>
       </div>
