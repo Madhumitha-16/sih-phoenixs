@@ -136,12 +136,12 @@ catch(e)
       {/* Separate div for the image */}
       <div className="imageContainer">
         <img
-          src="url_to_your_image.png"
-          alt="Your Image"
-          className="formImage"
+       src={phase1} width={"80%"} height={"80%"}
         />
       </div>
+      
     </div>
+    
   );
 }
 
