@@ -16,15 +16,7 @@ function Homepage() {
   const isAuthenticated = !Array.isArray(ctx);
   const [dashboardData, setDashboardData] = useState({});
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/dashboard_data", { withCredentials: true })
-      .then((res) => {
-        if (res.data != null) {
-          setDashboardData(res.data);
-        }
-      });
-  }, []);
+
 
   const TopPanel = () => {
     const todaysDate = new Date().getTime();

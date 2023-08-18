@@ -42,7 +42,7 @@ function App() {
         <Route path="/logintest" element={<Logintest />} />
         <Route path="/signuptest" element={<Signuptest />} />
         <Route
-          path="/team-registration"
+          path="/team-registration/:userId"
           element={<TeamDetails />}
         />
         <Route
@@ -62,7 +62,7 @@ function App() {
           }
         />
         <Route
-          path="/phase1"
+          path="/phase1/:userId"
           element={
             <PrivateRoute>
               <MainSideBar />

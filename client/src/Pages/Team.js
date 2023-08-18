@@ -20,43 +20,6 @@ const Team = () => {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    // async function fetchuser() {
-    //   const q = query(collection(db, "Team_Details"), where("userid", "==", "RRH9ngOiNocRCn81uSjZeLjaXT43"));
-    //   const querySnapshot = await getDocs(q);
-    //   querySnapshot.forEach((doc) => {
-    //     console.log(doc.id, " => ", doc.data());
-    //     setDocId(doc.id); // Set the docId state with a valid document ID
-    //   });
-    // }
-    
-
-
-    // useEffect(() => {
-    //   let isMounted = true; // Add this flag
-    
-    //   const fetchUser = async () => {
-    //     try {
-    //       const q = query(collection(db, "Team_Details"), where("userid", "==", "RRH9ngOiNocRCn81uSjZeLjaXT43"));
-    //       const querySnapshot = await getDocs(q);
-    //       querySnapshot.forEach((doc) => {
-    //         console.log(doc.id, " => ", doc.data());
-    //         if (isMounted) {
-    //           setDocId(doc.id);
-    //         }
-    //       });
-    //     } catch (error) {
-    //       console.error("Error fetching user:", error);
-    //     }
-    //   };
-    
-    //   fetchUser();
-    
-    //   // Cleanup function
-    //   return () => {
-    //     isMounted = false; // Update the flag to indicate the component is unmounted
-    //   };
-    // }, []);
-
     async function fetchUser() {
       try {
         const q = query(
@@ -77,9 +40,6 @@ const Team = () => {
       }
     }
   
-    // useEffect(() => {
-    //   fetchUser();
-    // }, [userId.userId]);
 
       useEffect(() => {
       fetchUser();
@@ -122,8 +82,9 @@ const Team = () => {
     useEffect(() => {
       const id=docId;
       console.log(id,"id");
-      const docRef = doc(db, 'Team_Details', id); 
-      getDoc(docRef)
+      if (docId) {
+        const docRef = doc(db, 'Team_Details', docId); 
+        getDoc(docRef)
         .then((docSnap) => {
           if (docSnap.exists()) {
             console.log("Document data:", docSnap.data());
@@ -163,11 +124,15 @@ const Team = () => {
           } 
           else {
             console.log("No such document!",docId);
+           
           }
         })
         .catch(error => {
           console.error("Error fetching document:", error);
+         
         });
+      }
+     
     }, [docId]);
 
 
@@ -181,6 +146,7 @@ const Team = () => {
     <div className='text-container'>
       <h2><strong>Team Leader:</strong></h2>
       <hr></hr>
+      
       {teamLeaderKeys.map(key => (
         <div key={key} style={{ display: 'flex' }}>
           <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Leader_', ''))}</div>

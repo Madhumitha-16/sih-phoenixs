@@ -2,9 +2,11 @@ import React, { useState ,useRef} from 'react'
 import './Styles/phase1.css';
 import {db} from "../firebaseConfig"
 import {addDoc,collection} from "@firebase/firestore";
+import { useParams } from 'react-router-dom';
 
 
 function Phase1() {
+  const userId = useParams();
   const [project_title, setproject_title] = useState("");
   const [abstract,setabstact ] = useState("");
   const [domain,setdomain ] = useState("");
