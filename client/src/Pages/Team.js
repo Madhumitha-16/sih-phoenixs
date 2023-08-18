@@ -22,10 +22,12 @@ const Team = () => {
 
     async function fetchUser() {
       try {
+   
         const q = query(
           collection(db, "Team_Details"),
-          where("userid", "==", "RRH9ngOiNocRCn81uSjZeLjaXT43")
+          where("userid", "==", userId)
         );
+        
         const querySnapshot = await getDocs(q);
         
         // Check if there is a document in the query result
@@ -35,6 +37,7 @@ const Team = () => {
         } else {
           console.log("No matching documents found.");
         }
+      
       } catch (error) {
         console.error("Error fetching user:", error);
       }

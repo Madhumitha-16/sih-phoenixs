@@ -1,15 +1,19 @@
-import React, { useState ,useRef} from 'react'
+import React, { useState ,useRef, useEffect} from 'react'
 import './Styles/phase1.css';
 import {db} from "../firebaseConfig"
 import {addDoc,collection} from "@firebase/firestore";
-import { useParams } from 'react-router-dom';
-
+import { useNavigate, useParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Phase1() {
   const userId = useParams();
   const [project_title, setproject_title] = useState("");
   const [abstract,setabstact ] = useState("");
   const [domain,setdomain ] = useState("");
+  const [docId,setDocId]= useState();
+  const notify = () => toast.success('Submitted Successfully');
+  const err = () => toast.error('Submission Failed!');
+
   const handlesetdomain=(e)=>
   {
     setdomain(e.target.value);
@@ -21,6 +25,11 @@ function Phase1() {
   const abs=useRef();
   const dom=useRef();
 
+  useEffect(() => {
+    if (docId) { 
+      notify();
+    }
+  }, [docId]);
 
   const prjdet=async(e)=>
 {
@@ -37,11 +46,15 @@ let data={
    
 try
 {
-    addDoc(ref,data);
+    // addDoc(ref,data);
+    const docRef=await addDoc(collection(db,"Team_Details"),data);
+    console.log("Document written with ID:",docRef.id);
+    setDocId(docRef.id)
 }
 catch(e)
 {
     console.log(e);
+    err();
 }
 
 }

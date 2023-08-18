@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
   const navigate = useNavigate();
+
+  const notify = () => toast.success('Login successful');
+  const err = () => toast.error('User not found!');
 
  const loginfunc=(e)=>{
       e.preventDefault();
@@ -24,23 +28,34 @@ function Login() {
       {
         const errorMessage = error.message;
         console.log(errorMessage);
+        err();
       });
     };
   
     useEffect(() => {
       if (userId) { 
-        navigate(`/home/${userId}`); 
+        notify();
+        setTimeout(() => {
+          navigate(`/home/${userId}`);
+        }, 1000);
       }
     }, [userId, navigate]);
     
-  
-  
-
   return (
     <>
       <div className="title">
         <h1> Nalaiyathiran</h1>
       </div>
+      <div>
+      <Toaster toastOptions={{
+        success: {
+          iconTheme: {
+            primary: 'green',
+            secondary: 'white',
+          },
+        },
+      }} />
+    </div>
       <div className="body">
         <div className="contentLoginWrap">
 
@@ -94,4 +109,5 @@ function Login() {
     </>
   );
 }
+
 export default Login;

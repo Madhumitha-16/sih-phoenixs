@@ -4,18 +4,21 @@ import team from "../Assets/Images/team.png";
 import { collection,addDoc } from 'firebase/firestore';
 import {db} from "../firebaseConfig";
 import { useNavigate, useParams } from 'react-router-dom';
-
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function TeamDetails() {
     const userId = useParams();
     const navigate = useNavigate();
     console.log("team",userId);
     const [docId,setDocId]= useState();
+    const notify = () => toast.success('Team Registered successfully');
+    const err = () => toast.error('Email already registered!');
 
     useEffect(() => {
-        if (docId) { 
-          navigate(`/login`); 
+        if (docId) { notify();
+            setTimeout(() => {
+                navigate(`/login`); 
+            }, 1000);
         }
       }, [docId, navigate]);
   
@@ -145,20 +148,31 @@ try
     //addDoc(ref,data)
     const docRef=await addDoc(collection(db,"Team_Details"),data);
     console.log("Document written with ID:",docRef.id);
+    setDocId(docRef.id)
    
 }
 catch(e)
 {
     console.log(e);
+    err();
 }
 };
 
     
   return (
     <>
+    
           <div className='title'>
         <h1> Nalaiyathiran - Team Details</h1>
       </div>
+      <Toaster toastOptions={{
+        success: {
+          iconTheme: {
+            primary: 'green',
+            secondary: 'white',
+          },
+        },
+      }} />
       <div className="body">
       <div>
         <img src={team} />
@@ -189,7 +203,8 @@ catch(e)
                 <span className='asterisk'> * </span></label>
             </div>
             <div className="input-group">
-                <input type="text" className="input" onChange={e => settlRegnum(e.target.value)} ref={tl_regnum} required />
+                <input type="text" className="input" onChange={e => settlRegnum(e.target.value)} ref={tl_regnum} required  pattern="[0-9]*"
+        inputMode="numeric" />
                 <label  className={`input-label ${tlregnum.length > 0 ? "focusLabel" : ""}`}>Register No. 
                 <span className='asterisk'> * </span></label>
             </div>
@@ -233,7 +248,8 @@ catch(e)
                 <label className={`input-label ${t2email.length > 0 ? "focusLabel" : ""}`}>Email <span className='asterisk'> * </span></label>
             </div>
             <div className="input-group">
-                <input type="text" className="input" onChange={e => sett2Regnum(e.target.value)} ref={t2_regnum}  required />
+                <input type="text" className="input" onChange={e => sett2Regnum(e.target.value)} ref={t2_regnum}  required  pattern="[0-9]*"
+        inputMode="numeric"/>
                 <label className={`input-label ${t2regnum.length > 0 ? "focusLabel" : ""}`} >Register No. <span className='asterisk'> * </span></label>
             </div>
             </div>
@@ -277,7 +293,8 @@ catch(e)
                 <label className={`input-label ${t1email.length > 0 ? "focusLabel" : ""}`}>Email <span className='asterisk'> * </span></label>
             </div>
             <div className="input-group">
-                <input type="text" className="input"onChange={e => sett1Regnum(e.target.value)} ref={t1_regnum} required />
+                <input type="text" className="input"onChange={e => sett1Regnum(e.target.value)} ref={t1_regnum} required  pattern="[0-9]*"
+        inputMode="numeric"/>
                 <label className={`input-label ${t1regnum.length > 0 ? "focusLabel" : ""}`}>Register No. <span className='asterisk'> * </span></label>
             </div>
             </div>
@@ -319,7 +336,8 @@ catch(e)
                 <label className={`input-label ${t3email.length > 0 ? "focusLabel" : ""}`}>Email <span className='asterisk'> * </span></label>
             </div>
             <div className="input-group">
-                <input type="text" className="input" onChange={e => sett3Regnum(e.target.value)} ref={t3_regnum} required />
+                <input type="text" className="input" onChange={e => sett3Regnum(e.target.value)} ref={t3_regnum} required  pattern="[0-9]*"
+        inputMode="numeric" />
                 <label className={`input-label ${t3regnum.length > 0 ? "focusLabel" : ""}`}>Register No. <span className='asterisk'> * </span></label>
             </div>
             </div>

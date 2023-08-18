@@ -5,6 +5,8 @@ import {auth} from "../firebaseConfig";
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 export default function Register()
 {
@@ -18,14 +20,59 @@ export default function Register()
   const [email,setemail]=useState("");
   const[password,setPassword]=useState("");
   const[userId,setUserId]=useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const notify = () => toast.success('Registration successful');
+  const err = () => toast.error('Email already registered!');
 
   const handleSelectChange = (event) => {
       setSelectedOption(event.target.value);
     };
+
+    const validatePassword = (password) => {
+      return password.length >= 6;
+    };
+
+    const handlePasswordChange = (e) => {
+      const newPassword = e.target.value;
+      setPassword(newPassword);
+  
+      if (!validatePassword(newPassword)) {
+        setPasswordError("Password must be at least 8 characters long.");
+      } else {
+        setPasswordError("");
+      }
+    };
+
+    const handleConfirmPasswordChange = (e) => {
+      const newConfirmPassword = e.target.value;
+      setCurPassword(newConfirmPassword);
+  
+      if (newConfirmPassword !== password) {
+        setConfirmPasswordError("Passwords do not match.");
+      } else {
+        setConfirmPasswordError("");
+      }
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      if (!validatePassword(password) || password !== curpassword) {
+        err();
+        return; // 
+      }
+        signup();
+ 
+    };
     
     useEffect(() => {
       if (userId) { 
-        navigate(`/team-registration/${userId}`); 
+        notify();
+        setTimeout(() => {
+          navigate(`/team-registration/${userId}`); 
+        }, 1000);
       }
     }, [userId, navigate]);
 
@@ -42,12 +89,21 @@ export default function Register()
   .catch((error) => {
     const errorMessage = error.message;
     console.log(errorMessage);
+    err();
   });
 };
 
   return (<div className="bodyWrap">
+   <Toaster toastOptions={{
+        success: {
+          iconTheme: {
+            primary: 'green',
+            secondary: 'white',
+          },
+        },
+      }} />
     <div className="contentRegisterWrap">
-    <form className="registerForm" onSubmit={signup}>
+    <form className="registerForm" onSubmit={handleSubmit}>
       <div className="RegisterSide">
         <div className="loginWrap">
           <h1>Register</h1>
