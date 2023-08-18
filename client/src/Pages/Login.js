@@ -1,32 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Styles/login.css";
 import login_img from "../Assets/Images/Secure login.gif";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { useNavigate } from 'react-router-dom';
 
-
-export default function Login() 
-{
-  
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
-  const loginfunc=(e)=>
-  {
-    e.preventDefault();  
-  signInWithEmailAndPassword(auth,username,password)
+  const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
+
+ const loginfunc=(e)=>{
+      e.preventDefault();
+      signInWithEmailAndPassword(auth,username,password)
       .then((userCredential)=>
       {    
         const user = userCredential.user;
-        console.log(user);
-      })
-      .catch((error)=>
+        console.log(user.uid);
+        setUserId(user.uid)
+      }).catch((error)=>
       {
         const errorMessage = error.message;
         console.log(errorMessage);
-      }); 
-    } ;
+      });
+    };
+  
+    useEffect(() => {
+      if (userId) { 
+        navigate(`/home/${userId}`); 
+      }
+    }, [userId, navigate]);
+    
+  
+  
 
   return (
     <>
@@ -70,7 +78,7 @@ export default function Login()
                   </div>
                   <input type="submit" value="Login" className="button"/>
                 <h4>Haven't registered yet ? 
-                <Link to="/register" className="maincolor">
+                <Link to="/register">
                 Register here!
                 </Link></h4>
               </div>
@@ -86,3 +94,4 @@ export default function Login()
     </>
   );
 }
+export default Login;

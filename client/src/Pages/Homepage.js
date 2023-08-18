@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
 import "./Styles/homepage.css";
 import { AuthLoginInfo } from "./../AuthComponents/AuthLogin";
 import PaymentsRoundedIcon from "@mui/icons-material/PaymentsRounded";
@@ -21,6 +11,7 @@ import ContentPasteRoundedIcon from "@mui/icons-material/ContentPasteRounded";
 import Sidebar from "../Components/Sidebar";
 
 function Homepage() {
+  const userId = useParams();
   const ctx = useContext(AuthLoginInfo);
   const isAuthenticated = !Array.isArray(ctx);
   const [dashboardData, setDashboardData] = useState({});
@@ -135,7 +126,8 @@ function Homepage() {
       );
     };
 
-    return (
+    return (<>
+    <Sidebar userId/>
   <div className="bodyWrap dashboardPage">
       <div className="topPanelWrap">
       
@@ -218,8 +210,10 @@ function Homepage() {
         </div>
       </div>
       </div>
+      </>
     );
   };
+  
 
   
 

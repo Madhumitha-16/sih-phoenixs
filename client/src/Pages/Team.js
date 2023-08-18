@@ -2,23 +2,89 @@ import React, { useEffect, useState } from 'react'
 import  {db}  from "../firebaseConfig.js";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-// import { collection, query, where, getDocs } from "@firebase/firestore";
 import { doc, getDoc} from "firebase/firestore"; 
+import { query, where,collection,getDocs } from "firebase/firestore";
 import "./Styles/team.css";
+import { useParams } from 'react-router-dom';
 
 const Team = () => {
-    const [data,setData]=useState([]);
+    const userId = useParams();
     const [teamLeaderData, setTeamLeaderData] = useState({});
     const [teamMember1Data, setTeamMember1Data] = useState({});
-
     const [teamMember2Data, setTeamMember2Data] = useState({});
-
     const [teamMember3Data, setTeamMember3Data] = useState({});
+    const [docId, setDocId] = useState("");
+
 
     function capitalizeFirstLetter(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // async function fetchuser() {
+    //   const q = query(collection(db, "Team_Details"), where("userid", "==", "RRH9ngOiNocRCn81uSjZeLjaXT43"));
+    //   const querySnapshot = await getDocs(q);
+    //   querySnapshot.forEach((doc) => {
+    //     console.log(doc.id, " => ", doc.data());
+    //     setDocId(doc.id); // Set the docId state with a valid document ID
+    //   });
+    // }
+    
+
+
+    // useEffect(() => {
+    //   let isMounted = true; // Add this flag
+    
+    //   const fetchUser = async () => {
+    //     try {
+    //       const q = query(collection(db, "Team_Details"), where("userid", "==", "RRH9ngOiNocRCn81uSjZeLjaXT43"));
+    //       const querySnapshot = await getDocs(q);
+    //       querySnapshot.forEach((doc) => {
+    //         console.log(doc.id, " => ", doc.data());
+    //         if (isMounted) {
+    //           setDocId(doc.id);
+    //         }
+    //       });
+    //     } catch (error) {
+    //       console.error("Error fetching user:", error);
+    //     }
+    //   };
+    
+    //   fetchUser();
+    
+    //   // Cleanup function
+    //   return () => {
+    //     isMounted = false; // Update the flag to indicate the component is unmounted
+    //   };
+    // }, []);
+
+    async function fetchUser() {
+      try {
+        const q = query(
+          collection(db, "Team_Details"),
+          where("userid", "==", "RRH9ngOiNocRCn81uSjZeLjaXT43")
+        );
+        const querySnapshot = await getDocs(q);
+        
+        // Check if there is a document in the query result
+        if (!querySnapshot.empty) {
+          const doc = querySnapshot.docs[0]; // Assuming you're only expecting one document
+          setDocId(doc.id);
+        } else {
+          console.log("No matching documents found.");
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    }
+  
+    // useEffect(() => {
+    //   fetchUser();
+    // }, [userId.userId]);
+
+      useEffect(() => {
+      fetchUser();
+    }, [userId.userId]);
+   
     const teamLeaderKeys = [
       'Team_Leader_firstname',
       'Team_Leader_lastname',
@@ -52,10 +118,11 @@ const Team = () => {
       'Team_Member3_Department',
     ];
 
+
     useEffect(() => {
-      // Example: Fetch data from Firestore
-      const docRef = doc(db, 'Team_Details', 'RIOitCcuxMN8qJ8yS5ZL');
-  
+      const id=docId;
+      console.log(id,"id");
+      const docRef = doc(db, 'Team_Details', id); 
       getDoc(docRef)
         .then((docSnap) => {
           if (docSnap.exists()) {
@@ -77,7 +144,6 @@ const Team = () => {
               }, {});
             setTeamMember1Data(teamMember1Properties);
 
-            // Filter "Team_Member1" properties
             const teamMember2Properties = Object.keys(docSnap.data())
             .filter(key => key.startsWith('Team_Member2'))
             .reduce((obj, key) => {
@@ -86,7 +152,7 @@ const Team = () => {
             }, {});
           setTeamMember2Data(teamMember2Properties);
 
-          // Filter "Team_Member1" properties
+          // Filter "Team_Member3" properties
           const teamMember3Properties = Object.keys(docSnap.data())
           .filter(key => key.startsWith('Team_Member3'))
           .reduce((obj, key) => {
@@ -96,33 +162,16 @@ const Team = () => {
         setTeamMember3Data(teamMember3Properties);
           } 
           else {
-            console.log("No such document!");
+            console.log("No such document!",docId);
           }
         })
         .catch(error => {
           console.error("Error fetching document:", error);
         });
-    }, []);
-
-  // async function Fetchsingle(e) {
-  //   const docRef = doc(db, "Team_Details", "vI5k1qjYBkH6qQo4qZZA");
-  //   const docSnap = await getDoc(docRef);
-
-  //   if (docSnap.exists()) {
-  //     console.log("Document data:", docSnap.data());
-  //     setData(docSnap.data()); // Store the fetched data in the state
-  //   } else {
-  //     console.log("No such document!");
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   Fetchsingle();
-  // }, []);
+    }, [docId]);
 
 
-    
-  return (
+    return (
     <div className='bodyWrap dashboardPage'>
     <div className='heading'>
         <h2>Team Details</h2>

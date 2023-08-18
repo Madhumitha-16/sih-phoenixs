@@ -12,7 +12,6 @@
     border-radius: 10px 10px 10px 10px;
     text-align: center;
     padding: 2% 5% ;
-
     margin: 5% 5%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
@@ -39,9 +38,7 @@ select{
     margin-bottom: 50px;
 }
 .heading h1{
-    font-size: 30px;
-    background-color: aqua;
-    
+    font-size: 30px;    
 }
 .heading{
     text-align: left;

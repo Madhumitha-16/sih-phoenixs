@@ -52,7 +52,7 @@ catch(e)
         <div className="contentLoginWrap">
           <form className="loginForm" onSubmit={prjdet}>
           <div className='heading'>
-            <h2>Phase-1</h2>
+            <h2>Phase-I</h2>
             <hr></hr>
         </div>
             <div className="phaseSide">
@@ -96,9 +96,13 @@ catch(e)
                   <input type="submit" value="Submit" className="button"/>
                 
               </div>
+              
             </div>
+          
           </form>
+          
         </div>
+        
     </div>
   )
 }
