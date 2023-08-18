@@ -8,7 +8,7 @@ export const Home = () => {
   return (
     <>
     <div className="home">
-=        <Navbar />
+       <Navbar />
         <div className='header'>
             <img src={project} width={800} height={800} />
         </div>

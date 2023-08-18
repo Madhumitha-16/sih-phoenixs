@@ -8,7 +8,7 @@ export default function Register()
 {
 
 
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState((""));
   const [lastName, setLastName] = useState("");
   const [curpassword, setCurPassword] = useState("");
   const [regnum,setRegNo] = useState("");
