@@ -70,7 +70,7 @@ function App() {
           }
         />
         <Route
-          path="/phase2"
+          path="/phase2/:userId"
           element={
             <PrivateRoute>
               <MainSideBar />
@@ -79,7 +79,7 @@ function App() {
           }
         />
         <Route
-          path="/phase3"
+          path="/phase3/:userId"
           element={
             <PrivateRoute>
               <MainSideBar />
@@ -97,7 +97,7 @@ function App() {
           }
         />
         <Route
-          path="/submissions"
+          path="/submissions/:userId"
           element={
             <PrivateRoute>
               <MainSideBar />

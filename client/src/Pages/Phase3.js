@@ -1,4 +1,5 @@
 import React from 'react'
+import Loading from '../Components/Loading'
 
 const Phase3 = () => {
   return (
@@ -6,6 +7,7 @@ const Phase3 = () => {
     <div className='heading'>
         <h2>Phase-III</h2>
         <hr></hr>
+        <Loading />
     </div>
 </div>
   )

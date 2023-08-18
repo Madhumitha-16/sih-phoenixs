@@ -1,6 +1,8 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 const Phase2 = () => {
+  const userId = useParams();
   return (
     <div className='bodyWrap dashboardPage'>
         <div className='heading'>

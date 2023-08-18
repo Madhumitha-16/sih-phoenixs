@@ -6,6 +6,7 @@ import { doc, getDoc} from "firebase/firestore";
 import { query, where,collection,getDocs } from "firebase/firestore";
 import "./Styles/team.css";
 import { useParams } from 'react-router-dom';
+import Loading from '../Components/Loading.js';
 
 const Team = () => {
     const userId = useParams();
@@ -14,6 +15,7 @@ const Team = () => {
     const [teamMember2Data, setTeamMember2Data] = useState({});
     const [teamMember3Data, setTeamMember3Data] = useState({});
     const [docId, setDocId] = useState("");
+    const [loading, setLoading] = useState(true);
 
 
     function capitalizeFirstLetter(str) {
@@ -34,6 +36,7 @@ const Team = () => {
         if (!querySnapshot.empty) {
           const doc = querySnapshot.docs[0]; // Assuming you're only expecting one document
           setDocId(doc.id);
+          setLoading(false);
         } else {
           console.log("No matching documents found.");
         }
@@ -144,12 +147,13 @@ const Team = () => {
     <div className='heading'>
         <h2>Team Details</h2>
         <hr></hr>
+    {loading ? <Loading /> : 
     <div className='container'>
     <div className='leader'>
+   
     <div className='text-container'>
       <h2><strong>Team Leader:</strong></h2>
       <hr></hr>
-      
       {teamLeaderKeys.map(key => (
         <div key={key} style={{ display: 'flex' }}>
           <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Leader_', ''))}</div>
@@ -157,6 +161,7 @@ const Team = () => {
         </div>
       ))}
     </div>
+    
     </div>
     <div class="row">
   <div class="column">
@@ -198,6 +203,7 @@ const Team = () => {
   </div>
 </div>
     </div>
+    }
     </div>
     </div>
   )
