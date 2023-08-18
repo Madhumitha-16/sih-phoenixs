@@ -1,50 +1,76 @@
-import React, { useState,useEffect } from 'react';
-import { db } from '../firebaseConfig';
-import {  doc,getDoc,getDocs} from "firebase/firestore"; 
-import { query, where,collection } from "firebase/firestore";
+import React, { useEffect, useState } from 'react'
+import  {db}  from "../firebaseConfig.js";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { doc, getDoc} from "firebase/firestore"; 
+import { query, where,collection,getDocs } from "firebase/firestore";
+import "./Styles/team.css";
 import { useParams } from 'react-router-dom';
+import Loading from '../Components/Loading.js';
 //import {  collection} from "firebase/firestore"; 
 
 
-const Submissions= ()=> {
+const Submissions =() =>{
 
-   const userId = useParams();
-   console.log("submission",userId);
-   const[docId,setDocId]=useState("");
-  async function fetchUser(e)
-  {
+    const userId = useParams();
+    const [docId, setDocId] = useState("");
+    //console.log("submission",userId);
+   async function fetchUser()
+   {
    
-    const docRef = doc(db, "PhaseI","8MjjIwGPN4DT9xjYp2ho");
-    const docSnap = await getDoc(docRef);
+  //   const docRef = doc(db, "PhaseI",userId.userId);
+  //   const docSnap = await getDoc(docRef);
   
-    if (docSnap.exists()) 
-  {
-    console.log("Document data:", docSnap.data());
-    setDocId(doc.id);
+  //   if (docSnap.exists()) 
+  // {
+  //   console.log("Document data:", docSnap.data());
+    
+  // } 
+  // else 
+  // {
+  // console.log("No such document!");
+  // }
+  // }
+  try {
+   
+    const q = query(
+      collection(db, "PhaseI"),
+      where("userid", "==", userId.userId)
+    );
+    
+    const querySnapshot = await getDocs(q);
+    
+    // Check if there is a document in the query result
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0]; // Assuming you're only expecting one document
+      setDocId(doc.id);
+    } 
+    else {
+      console.log("No matching documents found.");
+    }
+  
   } 
-  else 
-  {
-  console.log("No such document!");
+  catch (error) {
+    console.error("Error fetching user:", error);
   }
-  }
+   }
 
 
     useEffect(() => {
       fetchUser();
   }, []);
 
-
-
   useEffect(() => {
     const id=docId;
-    console.log(id,"id");
+   // console.log(id,"id");
     if (docId) {
       const docRef = doc(db, 'PhaseI', docId); 
       getDoc(docRef)
       .then((docSnap) => {
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
-        } 
+
+        }
         else {
           console.log("No such document!",docId);
          
@@ -55,13 +81,10 @@ const Submissions= ()=> {
        
       });
     }
-   
   }, [docId]);
 
 
 
-const Submissions = () => {
-  
   return (
     <div className='bodyWrap dashboardPage'>
     <div className='heading'>
@@ -87,7 +110,7 @@ const Submissions = () => {
 
 </div>
   )
-}
+
 }
 
 export default Submissions
