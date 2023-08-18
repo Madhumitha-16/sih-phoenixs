@@ -13,7 +13,7 @@ export const SidebarData = [
   {
     title: "Dashboard",
     icon: <HomeRoundedIcon />,
-    link: "/home"
+    link: "/home/:userId"
   },
   {
     title: "Team",
@@ -23,7 +23,7 @@ export const SidebarData = [
   {
     title: "Phase I",
     icon: <PeopleOutlineRoundedIcon />,
-    link: "/phase1"
+    link: "/phase1/:userId"
   },
   {
     title: "Phase II",

@@ -1,12 +1,25 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Styles/teamdetails.css';
 import team from "../Assets/Images/team.png";
 import { collection,addDoc } from 'firebase/firestore';
 import {db} from "../firebaseConfig";
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
 function TeamDetails() {
+    const userId = useParams();
+    const navigate = useNavigate();
+    console.log("team",userId);
+    const [docId,setDocId]= useState();
+
+    useEffect(() => {
+        if (docId) { 
+          navigate(`/login`); 
+        }
+      }, [docId, navigate]);
+  
+
 //Team leader
 const [tlfirstName,settlFirstName]=useState("");
 const [tlLastName,settlLastName]=useState("");
@@ -47,12 +60,8 @@ const [t2selectedOption, t2setSelectedOption] = useState("");
       t3setSelectedOption(event.target.value);
     };
 
-
-
-
 //create collection
 const ref=collection(db,"Team_Details");
-
 
 //TL
 const tl_fname=useRef("");
@@ -128,7 +137,7 @@ let data={
     Team_Member3_Regnum:t3_regnum.current.value,
     Team_Member3_Course:t3_course.current.value,
     Team_Member3_Department:t3_dept.current.value,
-    userid:""
+    userid:userId.userId
 
 }
 try
@@ -233,8 +242,8 @@ catch(e)
             <label>Course <span className='asterisk'> * </span></label>
             <br></br>
             <br></br>
-        <input type="radio" className="input-radio" ref={t2_course} required value="BE" name="course"/>BE
-        <input type="radio" className="input-radio"  required value="BTech" name="course"/>BTech
+        <input type="radio" className="input-radio" ref={t2_course} required value="BE" name="course1"/>BE
+        <input type="radio" className="input-radio"  required value="BTech" name="course1"/>BTech
             </div>
             <div className="input-group">
             <label>Department <span className='asterisk'> * </span></label>
@@ -277,8 +286,8 @@ catch(e)
             <label>Course <span className='asterisk'> * </span></label>
             <br></br>
             <br></br>
-        <input type="radio" className="input-radio" ref={t1_course}required value="BE" name="course"/>BE
-        <input type="radio" className="input-radio"  required value="BTech" name="course"/>BTech
+        <input type="radio" className="input-radio" ref={t1_course}required value="BE" name="course2"/>BE
+        <input type="radio" className="input-radio"  required value="BTech" name="course2"/>BTech
             </div>
             <div className="input-group">
             <label>Department <span className='asterisk'> * </span></label>
@@ -319,8 +328,8 @@ catch(e)
             <label>Course <span className='asterisk'> * </span></label>
             <br></br>
             <br></br>
-        <input type="radio" className="input-radio" ref={t3_course} required value="BE" name="course"/>BE
-        <input type="radio" className="input-radio"  required value="BTech" name="course"/>BTech
+        <input type="radio" className="input-radio" ref={t3_course} required value="BE" name="course3"/>BE
+        <input type="radio" className="input-radio"  required value="BTech" name="course3"/>BTech
             </div>
             <div className="input-group">
             <label>Department <span className='asterisk'> * </span></label>

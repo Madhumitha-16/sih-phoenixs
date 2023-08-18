@@ -3,22 +3,32 @@ import './Styles/register.css';
 import register from "../Assets/Images/regsiteration.png";
 import {auth} from "../firebaseConfig";
 import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Register()
 {
 
-
-  const [firstName, setFirstName] = useState((""));
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [curpassword, setCurPassword] = useState("");
   const [regnum,setRegNo] = useState("");
   const [selectedOption, setSelectedOption] = useState('');
   const [email,setemail]=useState("");
   const[password,setPassword]=useState("");
+  const[userId,setUserId]=useState("");
+
   const handleSelectChange = (event) => {
       setSelectedOption(event.target.value);
     };
     
+    useEffect(() => {
+      if (userId) { 
+        navigate(`/team-registration/${userId}`); 
+      }
+    }, [userId, navigate]);
+
    const signup=(e)=>
     {
         e.preventDefault();
@@ -26,6 +36,7 @@ export default function Register()
   .then((userCredential) => {
     const user = userCredential.user;
     console.log(user);
+    setUserId(user.uid)
   })
   
   .catch((error) => {
