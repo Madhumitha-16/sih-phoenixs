@@ -9,6 +9,8 @@ import SupervisorAccountRoundedIcon from "@mui/icons-material/SupervisorAccountR
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import ContentPasteRoundedIcon from "@mui/icons-material/ContentPasteRounded";
 import Sidebar from "../Components/Sidebar";
+import { Chart } from "react-google-charts";
+
 
 function Homepage() {
   const userId = useParams();
@@ -16,6 +18,17 @@ function Homepage() {
   const isAuthenticated = !Array.isArray(ctx);
   const [dashboardData, setDashboardData] = useState({});
 
+  const data = [
+    ["Task", "Hours per Day"],
+    ["Phase 1", 25],
+    ["Phase 2", 40],
+    ["Phase 3", 60],
+  ];
+
+  const options = {
+    title: "Progress",
+    is3D: true,
+  };
 
 
   const TopPanel = () => {
@@ -199,8 +212,16 @@ function Homepage() {
               </span>
             </div>
           </div>
+    
         </div>
       </div>
+      <Chart
+      chartType="PieChart"
+      data={data}
+      options={{...options, backgroundColor:"transparent"}}
+      width={"100%"}
+      height={"400px"}
+    />
       </div>
       </>
     );
