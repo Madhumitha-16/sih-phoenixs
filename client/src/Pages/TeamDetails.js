@@ -142,7 +142,10 @@ let data={
 }
 try
 {
-    addDoc(ref,data);
+    //addDoc(ref,data)
+    const docRef=await addDoc(collection(db,"Team_Details"),data);
+    console.log("Document written with ID:",docRef.id);
+   
 }
 catch(e)
 {
