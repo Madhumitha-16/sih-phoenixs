@@ -94,7 +94,6 @@ const Team = () => {
         .then((docSnap) => {
           if (docSnap.exists()) {
             console.log("Document data:", docSnap.data());
-  
             // Filter "Team_Leader" properties
             const teamLeaderProperties = teamLeaderKeys.reduce((obj, key) => {
               obj[key] = docSnap.data()[key];
