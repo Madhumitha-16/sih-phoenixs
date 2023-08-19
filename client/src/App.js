@@ -21,6 +21,8 @@ import Team from './Pages/Team';
 import Signuptest from './Pages/Signuptest';
 import Submissions from './Pages/Submissions';
 import MainSideBar from './Components/MainSideBar';
+import ShowAllTeams from './Pages/hod/showAllTeams';
+import ViewSubmissions from './Pages/hod/ViewSubmissions';
 
 
 function App() {
@@ -50,6 +52,19 @@ function App() {
             <Home />
           }
         />
+        <Route
+          path="/showteams"
+          element={
+            <ShowAllTeams />
+          }
+        />
+        <Route
+          path="/viewsubs"
+          element={
+            <ViewSubmissions />
+          }
+        />
+        
         <Route
           path="/home/:userId"
           exact

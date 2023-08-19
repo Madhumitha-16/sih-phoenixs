@@ -61,7 +61,6 @@ const Submissions =() =>{
   }, []);
 
   useEffect(() => {
-    const id=docId;
    // console.log(id,"id");
     if (docId) {
       const docRef = doc(db, 'PhaseI', docId); 
