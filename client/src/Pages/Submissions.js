@@ -7,6 +7,7 @@ import { query, where,collection,getDocs } from "firebase/firestore";
 import "./Styles/team.css";
 import { useParams } from 'react-router-dom';
 import Loading from '../Components/Loading.js';
+import {CheckCircleFilled} from '@ant-design/icons';
 //import {  collection} from "firebase/firestore"; 
 
 
@@ -14,23 +15,12 @@ const Submissions =() =>{
 
     const userId = useParams();
     const [docId, setDocId] = useState("");
-    //console.log("submission",userId);
+    const [phase1Details, setPhase1Details] = useState("");
+    console.log("submission",userId.userId);
+
    async function fetchUser()
    {
    
-  //   const docRef = doc(db, "PhaseI",userId.userId);
-  //   const docSnap = await getDoc(docRef);
-  
-  //   if (docSnap.exists()) 
-  // {
-  //   console.log("Document data:", docSnap.data());
-    
-  // } 
-  // else 
-  // {
-  // console.log("No such document!");
-  // }
-  // }
   try {
    
     const q = query(
@@ -40,9 +30,8 @@ const Submissions =() =>{
     
     const querySnapshot = await getDocs(q);
     
-    // Check if there is a document in the query result
     if (!querySnapshot.empty) {
-      const doc = querySnapshot.docs[0]; // Assuming you're only expecting one document
+      const doc = querySnapshot.docs[0]; 
       setDocId(doc.id);
     } 
     else {
@@ -61,15 +50,13 @@ const Submissions =() =>{
   }, []);
 
   useEffect(() => {
-    const id=docId;
-   // console.log(id,"id");
     if (docId) {
       const docRef = doc(db, 'PhaseI', docId); 
       getDoc(docRef)
       .then((docSnap) => {
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
-
+          setPhase1Details(docSnap.data());
         }
         else {
           console.log("No such document!",docId);
@@ -83,19 +70,38 @@ const Submissions =() =>{
     }
   }, [docId]);
 
-
+  console.log(phase1Details.Domain,"phase1");
 
   return (
     <div className='bodyWrap dashboardPage'>
     <div className='heading'>
-        <h2>Submissions</h2>
-        
+        <h2>Submissions</h2>  
         <hr></hr>
     </div>
+  <div className='main-container'>
     <div class="column">
     <div className='text-container'>
-      <h3>Phase 1</h3>
-    </div>
+    <div className='row'>
+    <div style={{ display: 'flex' }}>
+          <div style={{ flex: '0px 0 0px', marginRight: '0px' }}><strong><h3>Phase 1</h3></strong></div>
+          <div> <CheckCircleFilled style={{color:"green",fontSize:"20px",margin:'15px 10px'}}/> </div>
+      </div>
+  </div>
+  <hr></hr>
+  <div style={{ display: 'flex' }}>
+          <div style={{ flex: '0 0 90px', marginRight: '0px',paddingBottom:'10px' }}>Project Title</div>
+          <div>: {phase1Details.Project_Title}</div>
+      </div>
+      <div style={{ display: 'flex',paddingBottom:'10px' }}>
+          <div style={{ flex: '0 0 90px', marginRight: '0px' }}>Domain</div>
+          <div>: {phase1Details.Domain}</div>
+      </div>
+      <div style={{ display: 'flex' }}>
+          <div style={{ flex: '0 0 90px', marginRight: '0px' }}>Abstract</div>
+          <div>: {phase1Details.Abstract}</div>
+      </div>
+ 
+</div>
     </div>
     <div class="column">
     <div className='text-container'>
@@ -107,7 +113,7 @@ const Submissions =() =>{
       <h3>Phase 3</h3>
     </div>
     </div>
-
+</div>
 </div>
   )
 
