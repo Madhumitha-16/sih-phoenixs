@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Submissions = () => {
+
+  const [phase1Details, setPhase1Details] = useState({});
+
   
   return (
     <div className='bodyWrap dashboardPage'>
