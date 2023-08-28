@@ -1,26 +1,33 @@
 import { getDocs } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { collection, } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import Loading from '../../Components/Loading';
 import { Table } from 'antd';
+import { Button, Modal } from 'antd';
 
 
 export default function ViewSubmissions() {
-    //const [subsData,setSubsData]=useState;
+    const [docData,setDocData]=useState({});
+  const [modalOpen, setModalOpen] = useState(false);
 
+
+    useEffect(() => {
+      return () => {
+        // Fetchsubmissions();
+      }
+    }, [])
     
-
-    async function Fetchsubmissions(e)
-    {
-        e.preventDefault();
-        const querySnapshot=await getDocs(collection(db,"PhaseI"));
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id, "=>",doc.data());
+    // async function Fetchsubmissions(e)
+    // {
+    //     const querySnapshot=await getDocs(collection(db,"PhaseI"));
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(doc.id, "=>",doc.data());
+    //         setDocData(doc.data());
             
-            
-        });
-    }
+    //     });
+    // }
+    console.log(docData);
     const columns = [
         {
           title: "Team Leader",
@@ -118,6 +125,20 @@ export default function ViewSubmissions() {
         <div className='heading'>
         <h2>Submissions</h2>  
         <hr></hr>
+        <Button type="primary" onClick={() => setModalOpen(true)}>
+        View Team Details
+      </Button>
+      <Modal
+        title="Vertically centered modal dialog"
+        centered
+        open={modalOpen}
+        onOk={() => setModalOpen(false)}
+        onCancel={() => setModalOpen(false)}
+      >
+        <p>some contents...</p>
+        <p>some contents...</p>
+        <p>some contents...</p>
+      </Modal>
         <Table columns={columns} dataSource={data} onChange={onChange} />
     </div>
     <div>
