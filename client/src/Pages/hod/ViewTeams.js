@@ -9,9 +9,7 @@ export default function ViewTeams() {
   const [teamData, setTeamData] = useState({});
   // const [loading, setLoading] = useState(true);
   // const [docId, setDocId] = useState("");
-  function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+  
   
 
     async function Fetchall()
@@ -20,10 +18,12 @@ export default function ViewTeams() {
     querySnapshot.forEach((doc) => {
       console.log(doc.id, " => ", doc.data());
     
-      setTeamData(doc.data());
+     
     });
 
   }
+ 
+  console.log(teamData);
   useEffect(()=>
   {
     Fetchall();
