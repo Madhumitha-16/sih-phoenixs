@@ -61,10 +61,9 @@ function App() {
          <Route
           path="/hodviewteams"
           element={
-            <PrivateRoute>
-              <MainSideBar />
+            
               <ViewTeams />
-            </PrivateRoute>
+            
           }
         />
         

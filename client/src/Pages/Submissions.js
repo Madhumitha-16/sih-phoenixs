@@ -6,7 +6,7 @@ import { doc, getDoc} from "firebase/firestore";
 import { query, where,collection,getDocs } from "firebase/firestore";
 import "./Styles/team.css";
 import { useParams } from 'react-router-dom';
-//import Loading from '../Components/Loading.js';
+import Loading from '../Components/Loading.js';
 import {CheckCircleFilled} from '@ant-design/icons';
 //import {  collection} from "firebase/firestore"; 
 
