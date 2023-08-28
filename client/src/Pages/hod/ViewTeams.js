@@ -1,103 +1,74 @@
 import React, { useState,useEffect } from 'react';
 import { getDocs,collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-//import {query,where} from "firebase/firestore";
-import { useParams } from 'react-router-dom';
-import Loading from '../../Components/Loading';
+import TeamCard from './TeamCards';
+import Sidebar from '../../Components/Sidebar';
+import {Card} from "antd";
+
 
 export default function ViewTeams() {
-  const [teamData, setTeamData] = useState({});
-  // const [loading, setLoading] = useState(true);
-  // const [docId, setDocId] = useState("");
-  
-  
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      
+      const collectionRef = collection(db, 'Team_Details'); // Replace with your collection name
 
-    async function Fetchall()
-  {    
-    const querySnapshot = await getDocs(collection(db, "Team_Details"));
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    
-     
-    });
+      try {
+        const querySnapshot = await getDocs(collectionRef);
+        const documents = [];
+        
+        querySnapshot.forEach((doc) => {
+          documents.push({ id: doc.id, ...doc.data() });
+        });
 
+        setData(documents);
+        setLoading(false); 
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  if (loading) {
+    return <div>Loading...</div>; 
   }
- 
-  console.log(teamData);
-  useEffect(()=>
-  {
-    Fetchall();
-  })
- 
 
+ console.log(data);
 
- 
+  return (<>
+    <Sidebar userId/>
+    <div className="bodyWrap dashboardPage">
+    <h1 className='teams'>Teams</h1>
+    <div className="app-container">
 
-  
-  return (
-
-    <div className='bodyWrap dashboardPage'>
-    <div className='heading'>
-        <h2>Team Details</h2>
-        <hr></hr>
+      <div className="team-column">
    
-    <div className='container'>
-    <div className='leader'>
-   
-    <div className='text-container'>
-      <h2><strong>Team Leader:</strong></h2>
-      <hr></hr>
-      {/* {teamLeaderKeys.map(key => (
-        <div key={key} style={{ display: 'flex' }}>
-          <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Leader_', ''))}</div>
-          <div>: {teamLeaderData[key]}</div>
-        </div>
-      ))} */}
+    <div className="team-cards">
+    {data.map((doc, index) => (
+            <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
+              <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
+              <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+            </Card>
+          ))}
+          </div>
     </div>
-    
-    </div>
-    <div class="row">
-  <div class="column">
-  <div className='text-container'>
-    <h2><strong>Team Member 1</strong></h2>  F
-      <hr></hr>
-      {/* {teamMember1Keys.map(key => (
-        <div key={key} style={{ display: 'flex' }}>
-        <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Member1_', ''))}</div>
-        <div>: {teamMember1Data[key]}</div>
-        </div>
-      ))} */}
+
+    <div className="team-column">
+    <div className="team-cards">
+    {data.map((doc, index) => (
+            <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
+              <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
+              <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+            </Card>
+          ))}
+          </div>
     </div>
   </div>
-  <div class="column">
- 
-  <div className='text-container'>
-      <h2><strong>Team Member 2</strong></h2>
-      <hr></hr>
-      {/* {teamMember2Keys.map(key => (
-        <div key={key} style={{ display: 'flex' }}>
-        <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Member2_', ''))}</div>
-        <div>: {teamMember2Data[key]} </div>
-        </div>
-      ))} */}
-    </div>
   </div>
-  <div class="column">
-  <div className='text-container'>
-      <h2><strong>Team Member 3</strong></h2>
-      <hr></hr>
-      {/* {teamMember3Keys.map(key => (
-        <div key={key} style={{ display: 'flex' }}>
-        <div style={{ flex: '0 0 90px', marginRight: '0px' }}>{capitalizeFirstLetter(key.replace('Team_Member3_', ''))}</div>
-        <div>: {teamMember3Data[key]}</div>
-        </div>
-      ))} */}
-    </div>
-  </div>
-</div>
-    </div>
-    
-    </div>
-    </div>
-  )
+  </>
+
+  );
+
 }
