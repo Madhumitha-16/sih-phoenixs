@@ -3,6 +3,7 @@ import { getDocs,collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import TeamCard from './TeamCards';
 import Sidebar from '../../Components/Sidebar';
+import {Card} from "antd";
 
 
 export default function ViewTeams() {
@@ -39,15 +40,32 @@ export default function ViewTeams() {
   return (<>
     <Sidebar userId/>
     <div className="bodyWrap dashboardPage">
-    <h1>Fetched Data:</h1>
+    <h1 className='teams'>Teams</h1>
+    <div className="app-container">
+
+      <div className="team-column">
+   
     <div className="team-cards">
-      {data.map((doc, index) => (
-        <TeamCard
-        key={index}
-            teamLeaderName={doc.Team_Leader_firstname}
-        />
-      ))}
+    {data.map((doc, index) => (
+            <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
+              <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
+              <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+            </Card>
+          ))}
+          </div>
     </div>
+
+    <div className="team-column">
+    <div className="team-cards">
+    {data.map((doc, index) => (
+            <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
+              <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
+              <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+            </Card>
+          ))}
+          </div>
+    </div>
+  </div>
   </div>
   </>
 

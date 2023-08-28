@@ -7,6 +7,7 @@
    
 }
 
+
 .column {
     float: left;
     width: 29%;
@@ -56,3 +57,27 @@
   .text-container h2{
     margin: 5px 0px 5px 0px;
   }
+
+
+  .app-container {
+    display: flex;
+
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .team-column {
+    width: 550px;
+    flex: 1;
+    padding: 0 10px;
+  }
+  
+  .team-cards {
+    display: grid;
+    gap: 10px;
+  }
+  .teams{
+    margin-left: 30px;
+  }
+  
+  
