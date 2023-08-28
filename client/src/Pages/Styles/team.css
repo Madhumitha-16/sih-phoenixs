@@ -74,9 +74,9 @@
   .team-cards {
     display: grid;
     flex-wrap: wrap;
-    grid-template-columns: repeat(2,1fr);
-    width:10px;
-    gap: 10px;
+     grid-template-columns: repeat(4,1fr); 
+    width:400px;
+    gap: 20px;
   
   }
   .teams{
