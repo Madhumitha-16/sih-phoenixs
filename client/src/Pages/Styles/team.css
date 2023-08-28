@@ -61,9 +61,8 @@
 
   .app-container {
     display: flex;
-
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
   }
   
   .team-column {
@@ -75,9 +74,9 @@
   .team-cards {
     display: grid;
     gap: 10px;
+      font-size: 20px;
+      color: blue;
   }
   .teams{
-    margin-left: 30px;
+    margin-left:30px;
   }
-  
-  
