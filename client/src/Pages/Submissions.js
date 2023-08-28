@@ -17,6 +17,8 @@ const Submissions =() =>{
     const [docId, setDocId] = useState("");
     const [phase1Details, setPhase1Details] = useState("");
     console.log("submission",userId.userId);
+    const [loading, setLoading] = useState(true);
+
 
    async function fetchUser()
    {
@@ -32,7 +34,10 @@ const Submissions =() =>{
     
     if (!querySnapshot.empty) {
       const doc = querySnapshot.docs[0]; 
+      setLoading(false);
+
       setDocId(doc.id);
+      setLoading(false);
     } 
     else {
       console.log("No matching documents found.");
@@ -79,8 +84,9 @@ const Submissions =() =>{
         <h2>Submissions</h2>  
         <hr></hr>
     </div>
-  <div className='main-container'>
-    <div class="column">
+    {loading ? <Loading /> :
+    <div>
+    <div class="column submission">
     <div className='text-container'>
     <div className='row'>
     <div style={{ display: 'flex' }}>
@@ -104,17 +110,18 @@ const Submissions =() =>{
  
 </div>
     </div>
-    <div class="column">
+    <div class="column submission">
     <div className='text-container'>
       <h3>Phase 2</h3>
     </div>
     </div>
-    <div class="column">
+    <div class="column submission">
     <div className='text-container'>
       <h3>Phase 3</h3>
     </div>
     </div>
-</div>
+    </div>
+    }
 </div>
   )
 
