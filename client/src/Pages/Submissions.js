@@ -8,6 +8,7 @@ import "./Styles/team.css";
 import { useParams } from 'react-router-dom';
 //import Loading from '../Components/Loading.js';
 import {CheckCircleFilled} from '@ant-design/icons';
+import Loading from '../Components/Loading.js';
 //import {  collection} from "firebase/firestore"; 
 
 

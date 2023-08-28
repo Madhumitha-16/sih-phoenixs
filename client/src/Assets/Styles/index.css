@@ -79,3 +79,8 @@ select {
     justify-content: unset !important;
   }
 }
+
+.ant-table {
+  font-size: 10px;
+  width: 98%;
+}

@@ -132,7 +132,6 @@ function Homepage() {
     };
 
     return (<>
-    <Sidebar userId/>
   <div className="bodyWrap dashboardPage">
       <div className="topPanelWrap">
       
