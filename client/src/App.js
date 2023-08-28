@@ -22,6 +22,7 @@ import Submissions from './Pages/Submissions';
 import MainSideBar from './Components/MainSideBar';
 import ViewTeams from './Pages/hod/ViewTeams';
 import ViewSubmissions from './Pages/hod/ViewSubmissions';
+import Dashboard from './Pages/hod/Dashboard';
 
 
 
@@ -51,31 +52,41 @@ function App() {
             <Home />
           }
         />
-        
         <Route
-          path="/hoddviewsubs"
+          path="/dashboard/:userId"
           element={
-            <ViewSubmissions />
+            <PrivateRoute>
+              <MainSideBar />
+              <Dashboard />
+            </PrivateRoute>
           }
         />
-         <Route
-          path="/hodviewteams"
-          element={
-            
-              <ViewTeams />
-            
-          }
-        />
-           
-        
         <Route
-          path="/home/:userId"
-          exact
+          path="/view-submissions/:userId"
           element={
             <>
               <MainSideBar />
-              <Homepage />
+              <ViewSubmissions />
             </>
+          }
+        />
+         <Route
+          path="/view-teams/:userId"
+          element={
+            <>
+              <MainSideBar />
+              <ViewTeams />
+            </>
+          }
+        />
+    <Route
+          path="/home/:userId"
+          exact
+          element={
+            <PrivateRoute>
+              <MainSideBar />
+              <Homepage />
+            </PrivateRoute>
           }
         />
         <Route

@@ -33,7 +33,12 @@ function Login() {
     };
   
     useEffect(() => {
-      if (userId) { 
+      if (userId==="fCUUjbdovFZnFjea0H26oZeHSHA3") { 
+        notify();
+        setTimeout(() => {
+          navigate(`/dashboard/${userId}`);
+        }, 1000);
+      }else if(userId){
         notify();
         setTimeout(() => {
           navigate(`/home/${userId}`);

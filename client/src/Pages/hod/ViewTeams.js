@@ -38,7 +38,6 @@ export default function ViewTeams() {
  console.log(data);
 
   return (<>
-    <Sidebar userId/>
     <div className="bodyWrap dashboardPage">
     <h1 className='teams'>Teams</h1>
     <div className="app-container">
