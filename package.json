@@ -13,6 +13,7 @@
   "author": "Krzysztof Zaleski",
   "license": "MIT",
   "dependencies": {
+    "@ant-design/icons": "^5.2.5",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^6.3.0",

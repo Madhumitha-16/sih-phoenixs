@@ -22,7 +22,7 @@ function Login() {
       .then((userCredential)=>
       {    
         const user = userCredential.user;
-        console.log(user.uid);
+        console.log(user);
         setUserId(user.uid)
       }).catch((error)=>
       {
