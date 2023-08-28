@@ -48,8 +48,10 @@ export default function ViewTeams() {
     <div className="team-cards">
     {data.map((doc, index) => (
             <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
+               
               <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
               <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+              
             </Card>
           ))}
           </div>
@@ -59,8 +61,10 @@ export default function ViewTeams() {
     <div className="team-cards">
     {data.map((doc, index) => (
             <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
+             
               <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
               <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+             
             </Card>
           ))}
           </div>

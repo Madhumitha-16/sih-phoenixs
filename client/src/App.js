@@ -66,10 +66,7 @@ function App() {
             
           }
         />
-        
-       
-        
-        
+           
         
         <Route
           path="/home/:userId"
