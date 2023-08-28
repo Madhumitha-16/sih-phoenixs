@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'Circular';
   src: url(./../Fonts/CircularStd-Medium.woff2) format("woff2");
@@ -78,6 +79,20 @@ select {
     position: relative !important;
     justify-content: unset !important;
   }
+}
+
+.ant-table {
+  font-size: 10px;
+  width: 98%;
+}
+
+.ant-btn-primary{
+  background-color: #94061B !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #b4051f !important;
+  border-color: #94061B;
 }
 .ant-card-body p
 {
