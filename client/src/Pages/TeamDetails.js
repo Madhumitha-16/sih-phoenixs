@@ -149,7 +149,6 @@ try
     const docRef=await addDoc(collection(db,"Team_Details"),data);
     console.log("Document written with ID:",docRef.id);
     setDocId(docRef.id)
-   
 }
 catch(e)
 {

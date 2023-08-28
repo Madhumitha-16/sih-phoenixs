@@ -1,32 +1,31 @@
 import React, { useState,useEffect } from 'react';
-import { getDocs,collection, doc, getDoc,updateDoc } from 'firebase/firestore';
+import { getDocs,collection, doc, getDoc,updateDoc, Firestore, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-import TeamCard from './TeamCards';
-import Sidebar from '../../Components/Sidebar';
 import {Button, Card,Select} from "antd";
-
+//import{query,where}from "@firebase/firestore"
 
 export default function ViewTeams() {
-  const [data, setData] = useState({});
+  const [teamData, setTeamData] = useState({});
   const [loading, setLoading] = useState(true);
   const { Option } = Select;
   const [mentors, setMentors] = useState([]);
   const [selectedMentor, setSelectedMentor] = useState('');
+  const[userId,setUserId]=useState('');
+  
 
   useEffect(() => {
     const fetchData = async () => {
-      
       const collectionRef = collection(db, 'Team_Details');
-
       try {
         const querySnapshot = await getDocs(collectionRef);
         const documents = [];
         
         querySnapshot.forEach((doc) => {
-          documents.push({ id: doc.id, ...doc.data() });
+        documents.push({ id: doc.id, ...doc.data() });
         });
-
-        setData(documents);
+        
+        setTeamData(documents);
+        
         setLoading(false); 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -49,33 +48,44 @@ export default function ViewTeams() {
     };
 
     fetchMentors();
-  }, []);
-  
 
-  // const handleMentorChange = async (userid, selectedMentor) => {
+   
+    const fetchProjectDetails=async(userId)=>
+    {
+      const phaseICollectionRef = collection(db, 'PhaseI');
+      const q = query(phaseICollectionRef, where('userid', '==', userId));
     
-  //   const teamDocRef = doc(db, 'Team_Details', userid);
+    try {
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        const phaseIDoc = querySnapshot.docs[0].data();
+        console.log('Project Title:', phaseIDoc.Project_Title);
+        console.log('Domain:', phaseIDoc.Domain);
+      } else {
+        console.log('No matching document found.');
+      }
+    } catch (error) {
+      console.error('Error fetching PhaseI data:', error);
+    }
+  }
+  fetchProjectDetails();
+    
 
-  //   try {
-  //     await updateDoc(teamDocRef, {
-  //       mentor: selectedMentor
-  //     });
-  //   } catch (error) {
-  //     console.error('Error updating mentor:', error);
-  //   }
-  // };
-  const handleUpdateMentor = async (userId, mentor) => {
+  }, []);
+
+
+  //button func
+  
+  const handleUpdateMentor = async ( mentor) => {
     if (!mentor) {
       console.log('Select a mentor before setting.');
       return;
     }
-
-   
-    const teamDocRef = doc(db, 'Team_Details', userId); 
+    const teamDocRef = doc(db, 'Team_Details'); 
 
     try {
       await updateDoc(teamDocRef, {
-        mentor: mentor
+        Mentor: mentor
       });
       console.log(`Mentor set to: ${mentor}`);
     } catch (error) {
@@ -87,25 +97,30 @@ export default function ViewTeams() {
     return <div>Loading...</div>; 
   }
 
- console.log(data);
+ console.log(teamData);
 
   return (<>
     <div className="bodyWrap dashboardPage">
     <h1 className='teams'>Teams</h1>
+    <div className="divider"></div> 
     <div className="app-container">
 
       <div className="team-column">
    
     <div className="team-cards">
-    {data.map((doc, index) => (
+   
+    {teamData.map((doc, index) => (
+      
             <Card key={index} title={`Team Leader: ${doc.Team_Leader_firstname}`}>
-               
-              <p><strong>Mail ID:</strong> {doc.Team_Leader_Mailid}</p>
-              <p><strong>Registration Number:</strong> {doc.Team_Member1_Regnum}</p>
+              <p><strong>Mail ID:</strong> <br></br>{doc.Team_Leader_Mailid}</p>
+              <p><strong>Registration Number:</strong> {doc.Team_Leader_Regnum}</p>
+              <p><strong>Project Title:</strong> {doc.project_Title}</p>
+              <p><strong>Domain:</strong> {doc.Domain}</p>
+              
               <Select
                 placeholder="Select a mentor"
                 onChange={(selectedMentor) => setSelectedMentor(selectedMentor)}
-                style={{ width: '100%' }}
+                style={{ width: '100%',marginBottom:'30px' }}
               >
                 {mentors.map((mentor, index) => (
                   <Option key={index} value={mentor.Name}>
@@ -113,7 +128,9 @@ export default function ViewTeams() {
                   </Option>
                 ))}
               </Select>
-              <Button type="primary" onClick={() => handleUpdateMentor(doc.id, selectedMentor)}>Set Mentor</Button>
+              <div className='buttonmentor'>
+              <Button className='buttonmentor' type="primary" onClick={() => handleUpdateMentor(doc.id, selectedMentor)}>Set Mentor</Button>
+              </div>
             </Card>
           ))}
           </div>
