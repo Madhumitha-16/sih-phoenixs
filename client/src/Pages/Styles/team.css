@@ -66,17 +66,41 @@
   }
   
   .team-column {
-    width: 550px;
+    
     flex: 1;
     padding: 0 10px;
   }
   
   .team-cards {
     display: grid;
-    gap: 10px;
-      font-size: 20px;
-      color: blue;
+    flex-wrap: wrap;
+     grid-template-columns: repeat(4,1fr); 
+    width:400px;
+    gap: 20px;
+  
   }
   .teams{
+    text-align: center;
     margin-left:30px;
+    margin-top: 30px;
+    width: 95%;
+    
   }
+
+  .divider {
+    width: 90%; /* Adjust divider width as needed */
+    height: 1px;
+    background-color: #000000; /* Divider color */
+    margin: 0px auto; /* Adjust vertical margin as needed */
+    margin-bottom: 30px;
+  }
+
+.buttonmentor{
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; /* Center items horizontally */
+   
+  
+}
