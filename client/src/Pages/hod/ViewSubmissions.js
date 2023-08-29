@@ -10,6 +10,7 @@ export default function ViewSubmissions() {
     // const [data,setData]=useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [mergedData, setMergedData] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Step 1: Fetch Team_details
@@ -22,6 +23,8 @@ export default function ViewSubmissions() {
           const teamDetail = doc.data();
           teamDetailsData.push({ id: doc.id, ...teamDetail });
         });
+
+        
 
         // Get all userids from the Team_details data
         const userIds = teamDetailsData.map((teamDetail) => teamDetail.userid);
@@ -53,6 +56,7 @@ export default function ViewSubmissions() {
 
             setMergedData(mergedData);
             console.log(mergedData);
+            setLoading(false);
           })
           .catch((error) => {
             console.error("Error fetching Phase1 data: ", error);
@@ -228,7 +232,7 @@ export default function ViewSubmissions() {
         <div className='heading'>
         <h2>Submissions</h2>  
         <hr></hr>
-        <Table columns={columns} dataSource={mergedData} onChange={onChange} />
+        <Table columns={columns} dataSource={mergedData} onChange={onChange} loading={loading}/>
     </div>
     <div>
    
