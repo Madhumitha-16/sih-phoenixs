@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import { getDocs,collection, doc, getDoc,updateDoc, Firestore, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-import {Button, Card,Select,} from "antd";
+import { InfoCircleOutlined } from '@ant-design/icons';
+import {Button, Card,Select,notification,Modal} from "antd";
 const { Option } = Select;
+
 
 
 export default function ViewTeams() {
@@ -10,7 +12,8 @@ export default function ViewTeams() {
   const [teamLeaders, setTeamLeaders] = useState([]); 
   const [mentors, setMentors] = useState([]);
   const [selectedMentor, setSelectedMentor] = useState('');
-  
+  const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [modalTeamLeader, setModalTeamLeader] = useState(null);
  
 
   useEffect(() => {
@@ -39,13 +42,14 @@ export default function ViewTeams() {
           } else {
             return {
               ...teamLeader,
-              Project_Title: 'NA',  // Set to 'NA' if not submitted
-              Domain: 'NA'          // Set to 'NA' if not submitted
+              Project_Title: 'NA',  
+              Domain: 'NA'          
             };
           }
         });
 
         setTeamLeaders(combinedData);
+        console.log(combinedData);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -53,6 +57,7 @@ export default function ViewTeams() {
     };
 
     fetchData();
+   
   
 
 
@@ -94,8 +99,17 @@ export default function ViewTeams() {
           Mentor: mentorName
         });
         console.log(`Mentor set to: ${mentorName}`);
-      } catch (error) {
+        notification.success({
+          message: 'Mentor Update Successful',
+          description: `Mentor set to: ${selectedMentor}`,
+        });
+      } 
+      catch (error) {
         console.error('Error updating mentor:', error);
+        notification.error({
+          message: 'Mentor Update Failed',
+          description: 'An error occurred while updating the mentor.',
+        });
       }
     }
   };
@@ -140,6 +154,49 @@ export default function ViewTeams() {
                >
                  Set Mentor
                </Button>
+
+
+               <Button
+                    type="link"
+                    icon={<InfoCircleOutlined />}
+                    onClick={() => {
+                      setIsModalVisible(true);
+                      setModalTeamLeader(teamLeader); // Store the current team leader for the modal
+                    }}
+                  />
+
+               <Modal
+        title={`Details for ${modalTeamLeader ? modalTeamLeader.Team_Leader_firstname : ''}`}
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        footer={[
+          <Button key="close" onClick={() => setIsModalVisible(false)}>
+            Close
+          </Button>
+        ]}
+      >
+        {modalTeamLeader && (
+          <div>
+            <p><strong>Team Member 1</strong></p>
+            <p>First name: {modalTeamLeader.Team_Member1_firstname}</p>
+            <p>Registration Number: {modalTeamLeader.Team_Member1_Regnum}</p>
+            <p>Mail ID: {modalTeamLeader.Team_Member1_Mailid}</p>
+            
+            <p><strong>Team Member 2</strong></p>
+            <p>First name: {modalTeamLeader.Team_Member2_firstname}</p>
+            <p>Registration Number: {modalTeamLeader.Team_Member2_Regnum}</p>
+            <p>Mail ID: {modalTeamLeader.Team_Member2_Mailid}</p>
+
+            <p><strong>Team Member 3</strong></p>
+            <p>First name: {modalTeamLeader.Team_Member3_firstname}</p>
+            <p>Registration Number: {modalTeamLeader.Team_Member3_Regnum}</p>
+            <p>Mail ID: {modalTeamLeader.Team_Member3_Mailid}</p>
+            
+            {/* Include other details you want to show in the modal */}
+          </div>
+        )}
+      </Modal>
+
                 
              </Card>
             ))}
