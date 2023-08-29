@@ -117,10 +117,10 @@ export default function ViewTeams() {
    
     {teamLeaders.map(teamLeader => (
                <Card key={teamLeader.id} title={`Team Leader: ${teamLeader.Team_Leader_firstname}`}>
-               <p>Mail ID: {teamLeader.Team_Leader_Mailid}</p>
-               <p>Registration Number: {teamLeader.Team_Leader_Regnum}</p>
-               <p>Project Title: {teamLeader.Project_Title}</p>
-               <p>Domain: {teamLeader.Domain}</p>
+               <p>Mail ID: <br></br>{teamLeader.Team_Leader_Mailid}</p>
+               <p>Registration Number:<br></br> {teamLeader.Team_Leader_Regnum}</p>
+               <p>Project Title: <br></br>{teamLeader.Project_Title}</p>
+               <p>Domain:<br></br> {teamLeader.Domain}</p>
          
                <Select
                  placeholder="Select a mentor"
