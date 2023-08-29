@@ -74,7 +74,7 @@
   .team-cards {
     display: grid;
     flex-wrap: wrap;
-     grid-template-columns: repeat(4,1fr); 
+     grid-template-columns: repeat(3,1fr); 
     width:400px;
     gap: 20px;
   

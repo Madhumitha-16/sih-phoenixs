@@ -160,8 +160,7 @@ catch(e)
     
   return (
     <>
-    
-          <div className='title'>
+        <div className='title'>
         <h1> Nalaiyathiran - Team Details</h1>
       </div>
       <Toaster toastOptions={{
