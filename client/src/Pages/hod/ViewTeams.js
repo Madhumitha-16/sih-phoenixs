@@ -158,7 +158,8 @@ export default function ViewTeams() {
 
                <Button
                     type="link"
-                    icon={<InfoCircleOutlined />}
+                    className="red-button"
+                    icon={<InfoCircleOutlined className="red-button" />}
                     onClick={() => {
                       setIsModalVisible(true);
                       setModalTeamLeader(teamLeader); // Store the current team leader for the modal

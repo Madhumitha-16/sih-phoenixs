@@ -101,6 +101,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center; /* Center items horizontally */
-   
-  
+}
+.red-button {
+  color: red;
+  font-size: 30px;
+  margin-left: 20px; /* Adjust the size as needed */
+ /* Adjust the margin as needed to push it slightly left */
+
 }
