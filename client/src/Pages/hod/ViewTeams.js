@@ -39,6 +39,7 @@ export default function ViewTeams() {
                 Team_Leader_Mailid: docData.Team_Leader_Mailid,
                 Team_Leader_Regnum: docData.Team_Leader_Regnum,
                 Project_Title: matchingDoc.data().Project_Title,
+                Domain: matchingDoc.data().Domain,
               });
             }
           }
@@ -109,10 +110,11 @@ export default function ViewTeams() {
    
     {Data.map(item => (
         <Card key={item} title={`Team Leader: ${item.Team_Leader_firstname}`}>
+         
         <p>Registration Number: {item.Team_Leader_Regnum}</p>
         <p>Mail ID: <br></br>{item.Team_Leader_Mailid}</p>
         <p>Project Title: {item.Project_Title}</p>
-        <p>Project Title: {item.Domain}</p>
+        <p>Domain: {item.Domain}</p>
               <Select
                 placeholder="Select a mentor"
                 onChange={(selectedMentor) => setSelectedMentor(selectedMentor)}
