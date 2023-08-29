@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { getDocs,collection, doc, getDoc,updateDoc, Firestore, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import {Button, Card,Select} from "antd";
-//import{query,where}from "@firebase/firestore"
+
 
 export default function ViewTeams() {
   const [teamData, setTeamData] = useState({});
@@ -10,28 +10,27 @@ export default function ViewTeams() {
   const { Option } = Select;
   const [mentors, setMentors] = useState([]);
   const [selectedMentor, setSelectedMentor] = useState('');
-  const[userId,setUserId]=useState('');
-  
+  const[prjData,setPrjData]=useState(''); 
 
   useEffect(() => {
     const fetchData = async () => {
       const collectionRef = collection(db, 'Team_Details');
       try {
         const querySnapshot = await getDocs(collectionRef);
-        const documents = [];
+        const userIDs = querySnapshot.docs.map((doc) => doc.data().userid);
         
+        const documents = [];
         querySnapshot.forEach((doc) => {
         documents.push({ id: doc.id, ...doc.data() });
         });
         
         setTeamData(documents);
-        
         setLoading(false); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-
+    
     fetchData();
 
     const fetchMentors = async () => {
@@ -49,31 +48,13 @@ export default function ViewTeams() {
 
     fetchMentors();
 
-   
-    const fetchProjectDetails=async(userId)=>
-    {
-      const phaseICollectionRef = collection(db, 'PhaseI');
-      const q = query(phaseICollectionRef, where('userid', '==', userId));
-    
-    try {
-      const querySnapshot = await getDocs(q);
-      if (!querySnapshot.empty) {
-        const phaseIDoc = querySnapshot.docs[0].data();
-        console.log('Project Title:', phaseIDoc.Project_Title);
-        console.log('Domain:', phaseIDoc.Domain);
-      } else {
-        console.log('No matching document found.');
-      }
-    } catch (error) {
-      console.error('Error fetching PhaseI data:', error);
-    }
-  }
-  fetchProjectDetails();
-    
+
+     
+
 
   }, []);
 
-
+  
   //button func
   
   const handleUpdateMentor = async ( mentor) => {
@@ -91,13 +72,16 @@ export default function ViewTeams() {
     } catch (error) {
       console.error('Error updating mentor:', error);
     }
+    
   };
   
   if (loading) {
     return <div>Loading...</div>; 
   }
+  console.log(teamData);
 
- console.log(teamData);
+ 
+
 
   return (<>
     <div className="bodyWrap dashboardPage">
