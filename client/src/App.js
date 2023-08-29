@@ -23,6 +23,7 @@ import MainSideBar from './Components/MainSideBar';
 import ViewTeams from './Pages/hod/ViewTeams';
 import ViewSubmissions from './Pages/hod/ViewSubmissions';
 import Dashboard from './Pages/hod/Dashboard';
+import Fetch from './Pages/fetch';
 
 
 
@@ -50,6 +51,12 @@ function App() {
           path="/"
           element={
             <Home />
+          }
+        />
+         <Route
+          path="/fetch"
+          element={
+            <Fetch />
           }
         />
         <Route

@@ -104,3 +104,11 @@ select {
   
   font-size: 20px;
 }
+.ant-table-thead .ant-table-cell {
+  background-color: #94061B  !important;
+  color: #fff !important;
+  }
+
+.ant-dropdown-trigger.ant-table-filter-trigger{
+  color: rgb(255, 255, 255) !important;
+}
