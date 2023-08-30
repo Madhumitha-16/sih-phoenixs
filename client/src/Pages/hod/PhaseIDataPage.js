@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { useParams } from 'react-router-dom'; // If you're using React Router
+import { useParams } from 'react-router-dom'; 
 import { db } from '../../firebaseConfig';
 import { Card } from 'antd';
+
+
 export default function PhaseIDataPage() {
-  const { userId } = useParams(); // Get the user ID from the URL params
-  const [phaseIData, setPhaseIData] = useState([]); // Use phaseIData as the state variable
+  const { userId } = useParams(); 
+  const [phaseIData, setPhaseIData] = useState([]); 
 
   useEffect(() => {
     const fetchPhaseIData = async () => {
@@ -15,7 +17,7 @@ export default function PhaseIDataPage() {
 
         const userData = [];
         phaseISnapshot.docs.forEach(doc => {
-          const phaseData = doc.data(); // Use phaseData to store the document data
+          const phaseData = doc.data(); 
           if (phaseData.userid === userId) {
             userData.push(phaseData);
           }
@@ -39,11 +41,11 @@ export default function PhaseIDataPage() {
       <ul>
         {phaseIData.map(data => (
           <Card key={data.id}>
-            {/* Display each field from the PhaseI data */}
+            
             Project Title: {data.Project_Title}<br></br>
             Domain: {data.Domain}<br></br>
             Abstract: {data.Abstract}
-            {/* Add other fields as needed */}
+            
           </Card>
         ))}
       </ul>
