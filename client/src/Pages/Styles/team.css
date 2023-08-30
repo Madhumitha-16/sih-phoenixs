@@ -74,9 +74,11 @@
   .team-cards {
     display: grid;
     flex-wrap: wrap;
-     grid-template-columns: repeat(3,1fr); 
+    grid-template-columns: repeat(4,1fr); 
     width:400px;
-    gap: 20px;
+    gap: 50px;
+    margin-left: 20px;
+  
   
   }
   .teams{
@@ -105,7 +107,11 @@
 .red-button {
   color: red;
   font-size: 30px;
-  margin-left: 20px; /* Adjust the size as needed */
+  margin-left: 10px; /* Adjust the size as needed */
  /* Adjust the margin as needed to push it slightly left */
 
+}
+.teamsmodal p
+{
+  color: black
 }

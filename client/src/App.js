@@ -24,6 +24,7 @@ import ViewTeams from './Pages/hod/ViewTeams';
 import ViewSubmissions from './Pages/hod/ViewSubmissions';
 import Dashboard from './Pages/hod/Dashboard';
 import Fetch from './Pages/fetch';
+import PhaseIDataPage from './Pages/hod/PhaseIDataPage';
 
 
 
@@ -74,6 +75,15 @@ function App() {
             <>
               <MainSideBar />
               <ViewSubmissions />
+            </>
+          }
+        />
+         <Route
+          path="/phaseI-data/:userId"
+          element={
+            <>
+              <MainSideBar />
+              <PhaseIDataPage />
             </>
           }
         />

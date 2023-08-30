@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getDocs,collection, doc, getDoc,updateDoc, Firestore, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined,EyeOutlined } from '@ant-design/icons';
 import {Button, Card,Select,notification,Modal} from "antd";
 const { Option } = Select;
 
@@ -121,6 +122,27 @@ export default function ViewTeams() {
     return <div>Loading...</div>; 
   }
 
+
+  // const displayPhaseIData = async (userId) => {
+  //   try {
+  //     console.log(userId);
+  //     const phaseIRef = collection(db, 'PhaseI');
+  //     const phaseISnapshot = await getDocs(phaseIRef);
+  
+  //     phaseISnapshot.docs.forEach(doc => {
+  //       const phaseIData = doc.data();
+  //       if (phaseIData.userid === userId) {
+         
+  //        // Log all fields from PhaseI for the specific user
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error('Error fetching PhaseI data:', error);
+  //   }
+  // };
+  
+
+
   return (<>
     <div className="bodyWrap dashboardPage">
     <h1 className='teams'>Teams</h1>
@@ -165,10 +187,11 @@ export default function ViewTeams() {
                       setModalTeamLeader(teamLeader); // Store the current team leader for the modal
                     }}
                   />
+                  
 
                <Modal
-        title={`Details for ${modalTeamLeader ? modalTeamLeader.Team_Leader_firstname : ''}`}
-        visible={isModalVisible}
+        title={(`Team Details `)}
+        open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={[
           <Button key="close" onClick={() => setIsModalVisible(false)}>
@@ -177,7 +200,7 @@ export default function ViewTeams() {
         ]}
       >
         {modalTeamLeader && (
-          <div>
+          <div className='teamsmodal'>
             <p><strong>Team Member 1</strong></p>
             <p>First name: {modalTeamLeader.Team_Member1_firstname}</p>
             <p>Registration Number: {modalTeamLeader.Team_Member1_Regnum}</p>
@@ -197,6 +220,15 @@ export default function ViewTeams() {
           </div>
         )}
       </Modal>
+      <Link to={`/phaseI-data/${teamLeader.userid}`}>
+              <Button
+          type="link"
+          icon={<EyeOutlined />}
+          // onClick={() => {
+          //   displayPhaseIData(teamLeader.userid); 
+          // }}
+/>
+</Link>
 
                 
              </Card>
