@@ -153,7 +153,7 @@ try
 catch(e)
 {
     console.log(e);
-    err();
+    err(e);
 }
 };
 

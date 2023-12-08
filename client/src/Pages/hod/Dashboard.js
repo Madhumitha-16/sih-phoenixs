@@ -3,7 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import SupervisorAccountRoundedIcon from "@mui/icons-material/SupervisorAccountRounded";
 import { Chart } from "react-google-charts";
-
+import LooksOneIcon from '@mui/icons-material/LooksOne';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import Looks3Icon from '@mui/icons-material/Looks3';
 
 function Dashboard() {
   const userId = useParams();
@@ -38,44 +40,39 @@ function Dashboard() {
 
         <div className="topPanelData">
           <div className="topPanelDataBox">
-
-            <div className="topPanelDataSummary">
-              
+          <div className="topPanelDataIcon topPanelHeaderInline">
+            <SupervisorAccountRoundedIcon /> <h2>21 </h2>  
             </div>
-
+            <h2>Teams</h2>
             <div className="topPanelSeperator"></div>
             <div>
               <span className="topPanelBottomText">
-                
+            
               </span>
             </div>
           </div>
          
           <div className="topPanelDataBox">
-            <div className="topPanelDataIcon">
-              <TrendingUpRoundedIcon />
+          <div className="topPanelDataIcon topPanelHeaderInline">
+            <LooksOneIcon />  <h2>Phase I </h2>
             </div>
             <div className="topPanelDataSummary">
-              
             </div>
 
             <div className="topPanelSeperator"></div>
             <div>
               <span className="topPanelBottomText">
-                <Link to="/orders" className="maincolor">
-                
-                </Link>
+              
               </span>
             </div>
           </div>
 
           <div className="topPanelDataBox">
-            <div className="topPanelDataIcon">
-              <SupervisorAccountRoundedIcon />
+          <div className="topPanelDataIcon topPanelHeaderInline">
+            <LooksTwoIcon />  <h2>Phase II </h2>
             </div>
 
             <div className="topPanelDataSummary">
-              
             </div>
 
             <div className="topPanelSeperator"></div>
@@ -88,15 +85,14 @@ function Dashboard() {
 
           <div className="topPanelDataBox">
             <div className="topPanelDataIcon topPanelHeaderInline">
-             
+            <Looks3Icon />  <h2>Phase III </h2>
             </div>
 
             <div className="topPanelSeperator"></div>
             <div>
               <span className="topPanelBottomText">
-                <Link to="/calendar" className="maincolor">
-                  See more events
-                </Link>
+               
+                  
               </span>
             </div>
           </div>

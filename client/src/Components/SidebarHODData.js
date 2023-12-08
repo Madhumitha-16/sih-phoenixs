@@ -20,11 +20,11 @@ export const SidebarHODData = [
     icon: <Groups />,
     link: "/view-teams/:userId"
   },
-  {
-    title: "Phase I",
-    icon: <PeopleOutlineRoundedIcon />,
-    link: "/phase1/:userId"
-  },
+  // {
+  //   title: "Phase I",
+  //   icon: <PeopleOutlineRoundedIcon />,
+  //   link: "/phase1/:userId"
+  // },
 //   {
 //     title: "Phase II",
 //     icon: <TodayRoundedIcon />,

@@ -3,20 +3,19 @@ import { db } from '../../firebaseConfig';
 import Loading from '../../Components/Loading';
 import { Table } from 'antd';
 import { Button, Modal } from 'antd';
-import { collection, getDocs, query, where } from "firebase/firestore"; // Import necessary Firestore functions
+import { collection, getDocs, query, where } from "firebase/firestore"; 
 
 
 export default function ViewSubmissions() {
-    // const [data,setData]=useState({});
-  const [modalOpen, setModalOpen] = useState(false);
+  
   const [mergedData, setMergedData] = useState([]);
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Step 1: Fetch Team_details
+    
     const teamDetailsData = [];
-    const teamDetailsCollection = collection(db, "Team_Details"); // Get the collection reference
-
+    const teamDetailsCollection = collection(db, "Team_Details"); 
+   
     getDocs(teamDetailsCollection)
       .then((teamDetailsSnapshot) => {
         teamDetailsSnapshot.forEach((doc) => {
@@ -25,12 +24,10 @@ export default function ViewSubmissions() {
         });
 
         
-
-        // Get all userids from the Team_details data
         const userIds = teamDetailsData.map((teamDetail) => teamDetail.userid);
         console.log(userIds);
-        // Step 2: Fetch Phase1 using query
-        const phase1Collection = collection(db, "PhaseI"); // Get the collection reference
+       
+        const phase1Collection = collection(db, "PhaseI"); 
 
         const phase1Query = query(phase1Collection, where("userid", "in", userIds));
 
@@ -157,9 +154,9 @@ export default function ViewSubmissions() {
           onFilter: (value, record) => {
             const phase_1 = record.phase1_id;
             if (phase_1 === null || phase_1 === undefined) {
-              return value === 'Not Submitted'; // Filter when value is "Not Submitted"
+              return value === 'Not Submitted'; 
             }
-            return phase_1 === value; // Filter based on exact match
+            return phase_1 !== null && phase_1 !== undefined && value === 'Submitted';
           },
         },
           {
@@ -184,11 +181,11 @@ export default function ViewSubmissions() {
             filterMode: 'tree',
             filterSearch: true,
             onFilter: (value, record) => {
-              const phase_1 = record.phase_1;
-              if (phase_1 === null || phase_1 === undefined) {
-                return value === 'Not Submitted'; // Filter when value is "Not Submitted"
+              const phase_2 = record.phase_2;
+              if (phase_2 === null || phase_2 === undefined) {
+                return value === 'Not Submitted'; 
               }
-              return phase_1 === value; // Filter based on exact match
+              return phase_2 !== null && phase_2 !== undefined && value === 'Submitted';
             },
           },
           {
@@ -213,11 +210,11 @@ export default function ViewSubmissions() {
             filterMode: 'tree',
             filterSearch: true,
             onFilter: (value, record) => {
-              const phase_1 = record.phase_1;
-              if (phase_1 === null || phase_1 === undefined) {
-                return value === 'Not Submitted'; // Filter when value is "Not Submitted"
+              const phase_3 = record.phase_3;
+              if (phase_3 === null || phase_3 === undefined) {
+                return value === 'Not Submitted'; 
               }
-              return phase_1 === value; // Filter based on exact match
+              return phase_3 !== null && phase_3 !== undefined && value === 'Submitted';
             },
           },
 
