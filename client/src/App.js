@@ -9,7 +9,6 @@ import AdminPanel from './Pages/AdminPanel';
 import PrivateRoute from './AuthComponents/PrivateRoute';
 import LoginRoute from './AuthComponents/LoginRoute';
 import AdminRoute from './AuthComponents/AdminRoute';
-import Sidebar from './Components/Sidebar';
 import { AuthLoginInfo } from './AuthComponents/AuthLogin';
 import Register from './Pages/Register';
 import TeamDetails from './Pages/TeamDetails';
